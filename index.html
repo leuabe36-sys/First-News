@@ -310,6 +310,38 @@
     .profile-hero {
       text-align: center;
       padding: 16px 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+    }
+    .profile-hero.is-locked {
+      padding: 12px 0 12px;
+      background: var(--sticky-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .profile-hero.is-locked .avatar-wrap {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 8px;
+    }
+    .profile-hero.is-locked .avatar-wrap::before,
+    .profile-hero.is-locked .avatar-wrap::after {
+      inset: -2px;
+      filter: blur(0.5px);
+    }
+    .profile-hero.is-locked .avatar-wrap::after {
+      filter: blur(4px);
+      opacity: 0.15;
+    }
+    .profile-hero.is-locked .avatar {
+      border-width: 2px;
+    }
+    .profile-hero.is-locked h1 {
+      font-size: 18px;
     }
 
     #toast { 
@@ -463,6 +495,7 @@
   </style>
   <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body class="flex flex-col items-center px-5 relative">
 
@@ -474,7 +507,7 @@
   <div id="particles"></div>
 
   <!-- Sticky Profile Bar -->
-  <div class="profile-sticky" id="stickyProfile">
+  <div class="profile-sticky" id="stickyProfile" style="display:none !important;">
     <div class="profile-inner">
       <div class="avatar-wrap">
         <div class="avatar">
@@ -514,7 +547,7 @@
     </button>
   </div>
 
-  <!-- Hero Profile -->
+  <!-- Sticky Profile (avatar + name only) -->
   <div class="profile-hero w-full max-w-md">
     <div class="avatar-wrap">
       <div class="avatar">
@@ -530,10 +563,13 @@
         </svg>
       </span>
     </div>
+  </div>
 
+  <!-- Bio & Stats (scrolls away) -->
+  <div class="w-full max-w-md text-center pb-6">
     <p class="text-sm mb-5 max-w-[280px] mx-auto leading-relaxed" style="color: var(--text-secondary);">Breaking news from all over the world. Stay informed, stay ahead.</p>
 
-    <div class="inline-flex items-center gap-2 text-xs glass px-4 py-2 rounded-full" style="color: var(--text-secondary);">
+    <div class="online-badge inline-flex items-center gap-2 text-xs glass px-4 py-2 rounded-full" style="color: var(--text-secondary);">
       <span class="relative flex h-2 w-2">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
@@ -541,7 +577,7 @@
       <span class="font-medium">Online now</span>
     </div>
 
-    <div class="flex items-center justify-center mt-8">
+    <div class="stats-wrap flex items-center justify-center mt-8">
       <div class="glass rounded-2xl px-8 py-3.5 flex items-center">
         <div class="stat-item">
           <div class="text-[15px] font-bold" style="color: var(--text-primary);">5</div>
@@ -797,17 +833,15 @@
 
     document.querySelectorAll('.link-btn').forEach(btn => observer.observe(btn));
 
-    // Sticky profile show/hide
-    const stickyProfile = document.getElementById('stickyProfile');
+    // Scroll lock for profile hero
     const heroProfile = document.querySelector('.profile-hero');
     const scrollHint = document.getElementById('scrollHint');
 
     window.addEventListener('scroll', () => {
-      const heroBottom = heroProfile.getBoundingClientRect().bottom;
-      if (heroBottom < 100) {
-        stickyProfile.classList.add('show');
+      if (window.scrollY > 20) {
+        heroProfile.classList.add('is-locked');
       } else {
-        stickyProfile.classList.remove('show');
+        heroProfile.classList.remove('is-locked');
       }
 
       // Hide scroll hint after scrolling
