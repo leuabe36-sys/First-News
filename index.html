@@ -41,6 +41,7 @@
       --toggle-bg: #e5e7eb;
       --toggle-icon: #6b7280;
       --stat-divider: rgba(0,0,0,0.06);
+      --sticky-bg: rgba(248,249,251,0.85);
     }
 
     [data-theme="dark"] {
@@ -75,6 +76,7 @@
       --toggle-bg: #262626;
       --toggle-icon: #a3a3a3;
       --stat-divider: rgba(255,255,255,0.08);
+      --sticky-bg: rgba(3,3,3,0.85);
     }
 
     * { font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
@@ -156,6 +158,13 @@
       position: relative; 
       overflow: hidden;
       box-shadow: var(--card-shadow);
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .link-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .link-btn::before {
@@ -188,13 +197,14 @@
 
     .avatar-wrap { 
       position: relative; 
-      width: 108px; height: 108px; 
-      margin: 0 auto 20px; 
+      width: 96px; height: 96px; 
+      margin: 0 auto 16px; 
+      flex-shrink: 0;
     }
     .avatar-wrap::before { 
       content: ''; 
       position: absolute; 
-      inset: -4px; 
+      inset: -3px; 
       border-radius: 50%; 
       background: conic-gradient(from 0deg, #6366f1, #22d3ee, #ec4899, #f59e0b, #6366f1); 
       animation: spin 5s linear infinite; 
@@ -203,12 +213,12 @@
     .avatar-wrap::after {
       content: '';
       position: absolute;
-      inset: -6px;
+      inset: -5px;
       border-radius: 50%;
       background: conic-gradient(from 0deg, #6366f1, #22d3ee, #ec4899, #f59e0b, #6366f1);
       animation: spin 5s linear infinite;
       opacity: 0.15;
-      filter: blur(10px);
+      filter: blur(8px);
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -219,7 +229,7 @@
       background: var(--avatar-bg); 
       display: flex; 
       align-items: center; justify-content: center; 
-      border: 4px solid var(--avatar-border); 
+      border: 3px solid var(--avatar-border); 
       overflow: hidden; 
       z-index: 1;
       box-shadow: 0 4px 16px rgba(0,0,0,0.06);
@@ -228,41 +238,71 @@
     .avatar img { 
       width: 100%; height: 100%; 
       object-fit: cover; 
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .avatar:hover img { transform: scale(1.08); }
-
-    /* Horizontal slide animations */
-    .slide-left { 
-      opacity: 0; 
-      transform: translateX(-40px); 
-      animation: slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
-    }
-    .slide-right { 
-      opacity: 0; 
-      transform: translateX(40px); 
-      animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
-    }
-    .slide-up { 
-      opacity: 0; 
-      transform: translateY(24px); 
-      animation: slideInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
     }
 
-    @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
-    @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
-    @keyframes slideInUp { to { opacity: 1; transform: translateY(0); } }
+    /* Sticky profile header */
+    .profile-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--sticky-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 16px 20px;
+      margin: 0 -20px;
+      width: calc(100% + 40px);
+      transition: background 0.5s ease;
+    }
 
-    /* Stagger delays */
-    .delay-1 { animation-delay: 0.08s; }
-    .delay-2 { animation-delay: 0.14s; }
-    .delay-3 { animation-delay: 0.20s; }
-    .delay-4 { animation-delay: 0.26s; }
-    .delay-5 { animation-delay: 0.32s; }
-    .delay-6 { animation-delay: 0.38s; }
-    .delay-7 { animation-delay: 0.44s; }
-    .delay-8 { animation-delay: 0.50s; }
-    .delay-9 { animation-delay: 0.56s; }
+    .profile-inner {
+      max-width: 448px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .profile-sticky .avatar-wrap {
+      width: 48px;
+      height: 48px;
+      margin: 0;
+    }
+
+    .profile-sticky .avatar-wrap::before,
+    .profile-sticky .avatar-wrap::after {
+      inset: -2px;
+      filter: blur(0.5px);
+    }
+
+    .profile-sticky .avatar {
+      border-width: 2px;
+    }
+
+    .profile-sticky .profile-text h1 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .profile-sticky .profile-text p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin: 2px 0 0;
+    }
+
+    /* Hero profile (before scroll) */
+    .profile-hero {
+      text-align: center;
+      padding: 20px 0 24px;
+    }
+
+    .profile-hero .avatar-wrap {
+      width: 108px;
+      height: 108px;
+      margin: 0 auto 20px;
+    }
 
     #toast { 
       position: fixed; 
@@ -324,12 +364,15 @@
     .verified {
       display: inline-flex;
       align-items: center; justify-content: center;
-      width: 18px; height: 18px;
+      width: 16px; height: 16px;
       background: linear-gradient(135deg, #6366f1, #22d3ee);
       border-radius: 50%;
-      margin-left: 6px;
+      margin-left: 4px;
       vertical-align: middle;
       box-shadow: 0 2px 6px rgba(99,102,241,0.25);
+    }
+    .verified svg {
+      width: 10px; height: 10px;
     }
 
     .stat-item {
@@ -390,13 +433,13 @@
 
     @media (max-width: 480px) {
       .link-btn { padding: 16px 18px; }
-      .avatar-wrap { width: 96px; height: 96px; }
+      .profile-hero .avatar-wrap { width: 96px; height: 96px; }
     }
   </style>
   <base target="_blank">
 <base target="_blank">
 </head>
-<body class="flex flex-col items-center px-5 py-12 relative">
+<body class="flex flex-col items-center px-5 relative">
 
   <div class="dots"></div>
   <div class="orb orb-1"></div>
@@ -406,7 +449,7 @@
   <div id="particles"></div>
 
   <!-- Top controls -->
-  <div class="w-full max-w-md flex justify-between items-center mb-8 slide-left delay-1">
+  <div class="w-full max-w-md flex justify-between items-center py-6">
     <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
       <svg id="sunIcon" class="w-4 h-4 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
         <circle cx="12" cy="12" r="5"/>
@@ -424,8 +467,8 @@
     </button>
   </div>
 
-  <!-- Profile -->
-  <div class="text-center mb-10 w-full max-w-md slide-right delay-2">
+  <!-- Hero Profile (visible before scroll) -->
+  <div class="profile-hero w-full max-w-md">
     <div class="avatar-wrap">
       <div class="avatar">
         <img src="https://i.imgur.com/TSyYWpZ.jpeg" alt="First News Profile">
@@ -435,7 +478,7 @@
     <div class="flex items-center justify-center gap-1 mb-2">
       <h1 class="text-3xl font-bold tracking-tight" style="color: var(--text-primary);">First News</h1>
       <span class="verified">
-        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+        <svg class="text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
           <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
         </svg>
       </span>
@@ -451,7 +494,6 @@
       <span class="font-medium">Online now</span>
     </div>
 
-    <!-- Stats -->
     <div class="flex items-center justify-center mt-6">
       <div class="glass rounded-2xl px-6 py-3 flex items-center">
         <div class="stat-item">
@@ -470,10 +512,32 @@
     </div>
   </div>
 
-  <!-- Links -->
-  <div class="w-full max-w-md space-y-3">
+  <!-- Sticky Profile Bar (appears when scrolled) -->
+  <div class="profile-sticky" id="stickyProfile">
+    <div class="profile-inner">
+      <div class="avatar-wrap">
+        <div class="avatar">
+          <img src="https://i.imgur.com/TSyYWpZ.jpeg" alt="First News Profile">
+        </div>
+      </div>
+      <div class="profile-text">
+        <div class="flex items-center gap-1">
+          <h1>First News</h1>
+          <span class="verified">
+            <svg class="text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+          </span>
+        </div>
+        <p>Breaking news from all over the world</p>
+      </div>
+    </div>
+  </div>
 
-    <a href="https://tiktok.com/@absiniyaetbiopoa1" target="_blank" rel="noopener" class="link-btn link-tiktok slide-left delay-3">
+  <!-- Links - scroll up and slide into the sticky profile area -->
+  <div class="w-full max-w-md space-y-3 pb-12 pt-4">
+
+    <a href="https://tiktok.com/@absiniyaetbiopoa1" target="_blank" rel="noopener" class="link-btn link-tiktok">
       <div class="icon-box bg-rose-50">
         <svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
@@ -488,7 +552,7 @@
       </svg>
     </a>
 
-    <a href="https://youtube.com/@AbrshNews" target="_blank" rel="noopener" class="link-btn link-youtube slide-right delay-4">
+    <a href="https://youtube.com/@AbrshNews" target="_blank" rel="noopener" class="link-btn link-youtube">
       <div class="icon-box bg-red-50">
         <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -503,7 +567,7 @@
       </svg>
     </a>
 
-    <a href="https://instagram.com/abrshnews" target="_blank" rel="noopener" class="link-btn link-insta slide-left delay-5">
+    <a href="https://instagram.com/abrshnews" target="_blank" rel="noopener" class="link-btn link-insta">
       <div class="icon-box bg-pink-50">
         <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect>
@@ -520,7 +584,7 @@
       </svg>
     </a>
 
-    <a href="https://t.me/FirstNews1221" target="_blank" rel="noopener" class="link-btn link-telegram slide-right delay-6">
+    <a href="https://t.me/FirstNews1221" target="_blank" rel="noopener" class="link-btn link-telegram">
       <div class="icon-box bg-sky-50">
         <svg class="w-5 h-5 text-sky-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
@@ -535,7 +599,7 @@
       </svg>
     </a>
 
-    <a href="https://facebook.com/AbrshNews12" target="_blank" rel="noopener" class="link-btn link-facebook slide-left delay-7">
+    <a href="https://facebook.com/AbrshNews12" target="_blank" rel="noopener" class="link-btn link-facebook">
       <div class="icon-box bg-blue-50">
         <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -553,7 +617,7 @@
   </div>
 
   <!-- Footer -->
-  <div class="mt-12 text-center slide-up delay-8">
+  <div class="pb-12 text-center">
     <p class="text-[11px] tracking-[0.2em] uppercase font-medium" style="color: var(--text-footer);">First News &copy; 2026</p>
   </div>
 
@@ -568,7 +632,7 @@
   </div>
 
   <script>
-    // ========== THEME TOGGLE ==========
+    // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
@@ -604,7 +668,7 @@
       setTheme(isDark ? 'light' : 'dark');
     });
 
-    // ========== COPY LINK ==========
+    // Copy link
     function copyLink() {
       navigator.clipboard.writeText(window.location.href).then(() => {
         const t = document.getElementById('toast'); 
@@ -623,7 +687,7 @@
       });
     }
 
-    // ========== MOUSE SPOTLIGHT ==========
+    // Mouse spotlight
     document.querySelectorAll('.link-btn').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -634,7 +698,7 @@
       });
     });
 
-    // ========== CURSOR GLOW ==========
+    // Cursor glow
     const cursorGlow = document.getElementById('cursorGlow');
     let mouseX = 0, mouseY = 0;
     let glowX = 0, glowY = 0;
@@ -653,7 +717,7 @@
     }
     animateGlow();
 
-    // ========== FLOATING PARTICLES ==========
+    // Floating particles
     function createParticle() {
       const particle = document.createElement('div');
       particle.className = 'particle';
@@ -670,7 +734,7 @@
     setInterval(createParticle, 800);
     for (let i = 0; i < 15; i++) setTimeout(createParticle, i * 300);
 
-    // ========== 3D TILT ==========
+    // 3D tilt
     document.querySelectorAll('.link-btn').forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
@@ -687,6 +751,38 @@
         btn.style.transform = '';
       });
     });
+
+    // Scroll reveal for link cards
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.link-btn').forEach(btn => observer.observe(btn));
+
+    // Sticky profile show/hide
+    const stickyProfile = document.getElementById('stickyProfile');
+    const heroProfile = document.querySelector('.profile-hero');
+
+    window.addEventListener('scroll', () => {
+      const heroBottom = heroProfile.getBoundingClientRect().bottom;
+      if (heroBottom < 80) {
+        stickyProfile.style.opacity = '1';
+        stickyProfile.style.transform = 'translateY(0)';
+      } else {
+        stickyProfile.style.opacity = '0';
+        stickyProfile.style.transform = 'translateY(-100%)';
+      }
+    });
+
+    // Init sticky profile hidden
+    stickyProfile.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    stickyProfile.style.opacity = '0';
+    stickyProfile.style.transform = 'translateY(-100%)';
   </script>
 </body>
 </html>
