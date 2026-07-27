@@ -11,72 +11,72 @@
   <style>
     :root {
       --bg: #f8f9fb;
-      --bg-orb-1: rgba(99,102,241,0.35);
-      --bg-orb-2: rgba(236,72,153,0.30);
-      --bg-orb-3: rgba(34,211,238,0.30);
-      --text-primary: #111827;
-      --text-secondary: #6b7280;
-      --text-muted: #9ca3af;
-      --text-footer: #9ca3af;
-      --card-bg: rgba(255,255,255,0.85);
-      --card-border: rgba(0,0,0,0.04);
-      --card-hover-border: rgba(0,0,0,0.06);
-      --card-hover-bg: rgba(255,255,255,0.95);
-      --card-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 4px 8px rgba(0,0,0,0.02);
-      --card-hover-shadow: 0 12px 32px -8px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.03);
-      --glass-bg: rgba(255,255,255,0.65);
-      --glass-border: rgba(255,255,255,0.8);
-      --glass-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
-      --spotlight: rgba(99,102,241,0.06);
-      --cursor-glow: rgba(99,102,241,0.04);
-      --particle: rgba(99,102,241,0.20);
-      --dot-color: #c7c7c7;
-      --selection-bg: rgba(99,102,241,0.20);
-      --selection-text: #111827;
+      --bg-orb-1: rgba(99,102,241,0.30);
+      --bg-orb-2: rgba(236,72,153,0.25);
+      --bg-orb-3: rgba(34,211,238,0.25);
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --text-footer: #cbd5e1;
+      --card-bg: rgba(255,255,255,0.70);
+      --card-border: rgba(148,163,184,0.12);
+      --card-hover-border: rgba(148,163,184,0.20);
+      --card-hover-bg: rgba(255,255,255,0.90);
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.03);
+      --card-hover-shadow: 0 20px 40px -12px rgba(0,0,0,0.10);
+      --glass-bg: rgba(255,255,255,0.60);
+      --glass-border: rgba(255,255,255,0.50);
+      --glass-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 4px 12px rgba(0,0,0,0.02);
+      --spotlight: rgba(99,102,241,0.04);
+      --cursor-glow: rgba(99,102,241,0.03);
+      --particle: rgba(99,102,241,0.15);
+      --dot-color: #cbd5e1;
+      --selection-bg: rgba(99,102,241,0.15);
+      --selection-text: #0f172a;
       --avatar-border: #f8f9fb;
       --avatar-bg: #fff;
-      --toast-bg: rgba(255,255,255,0.85);
-      --toast-text: #1f2937;
-      --toast-shadow: 0 10px 40px -10px rgba(0,0,0,0.10);
-      --toggle-bg: #e5e7eb;
-      --toggle-icon: #6b7280;
-      --stat-divider: rgba(0,0,0,0.06);
-      --sticky-bg: rgba(248,249,251,0.85);
+      --toast-bg: rgba(255,255,255,0.80);
+      --toast-text: #1e293b;
+      --toast-shadow: 0 20px 50px -12px rgba(0,0,0,0.15);
+      --toggle-bg: #e2e8f0;
+      --toggle-icon: #64748b;
+      --stat-divider: rgba(148,163,184,0.15);
+      --sticky-bg: rgba(248,249,251,0.80);
     }
 
     [data-theme="dark"] {
-      --bg: #030303;
-      --bg-orb-1: rgba(52,211,153,0.40);
-      --bg-orb-2: rgba(168,85,247,0.35);
-      --bg-orb-3: rgba(34,211,238,0.25);
-      --text-primary: #ffffff;
-      --text-secondary: #a3a3a3;
-      --text-muted: #737373;
-      --text-footer: #525252;
-      --card-bg: rgba(255,255,255,0.03);
-      --card-border: rgba(255,255,255,0.05);
-      --card-hover-border: rgba(255,255,255,0.12);
-      --card-hover-bg: rgba(255,255,255,0.05);
+      --bg: #020202;
+      --bg-orb-1: rgba(52,211,153,0.25);
+      --bg-orb-2: rgba(168,85,247,0.22);
+      --bg-orb-3: rgba(34,211,238,0.18);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --text-footer: #334155;
+      --card-bg: rgba(255,255,255,0.025);
+      --card-border: rgba(255,255,255,0.04);
+      --card-hover-border: rgba(255,255,255,0.10);
+      --card-hover-bg: rgba(255,255,255,0.04);
       --card-shadow: none;
-      --card-hover-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
-      --glass-bg: rgba(255,255,255,0.04);
-      --glass-border: rgba(255,255,255,0.08);
+      --card-hover-shadow: 0 20px 40px -12px rgba(0,0,0,0.5);
+      --glass-bg: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.06);
       --glass-shadow: none;
-      --spotlight: rgba(255,255,255,0.06);
-      --cursor-glow: rgba(255,255,255,0.03);
-      --particle: rgba(255,255,255,0.15);
+      --spotlight: rgba(255,255,255,0.04);
+      --cursor-glow: rgba(255,255,255,0.02);
+      --particle: rgba(255,255,255,0.10);
       --dot-color: transparent;
-      --selection-bg: rgba(52,211,153,0.30);
-      --selection-text: #ffffff;
-      --avatar-border: #0a0a0a;
+      --selection-bg: rgba(52,211,153,0.20);
+      --selection-text: #f8fafc;
+      --avatar-border: #020202;
       --avatar-bg: #0a0a0a;
-      --toast-bg: rgba(255,255,255,0.06);
-      --toast-text: #ffffff;
-      --toast-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
-      --toggle-bg: #262626;
-      --toggle-icon: #a3a3a3;
-      --stat-divider: rgba(255,255,255,0.08);
-      --sticky-bg: rgba(3,3,3,0.85);
+      --toast-bg: rgba(255,255,255,0.05);
+      --toast-text: #f8fafc;
+      --toast-shadow: 0 20px 50px -12px rgba(0,0,0,0.5);
+      --toggle-bg: #1e293b;
+      --toggle-icon: #94a3b8;
+      --stat-divider: rgba(255,255,255,0.06);
+      --sticky-bg: rgba(2,2,2,0.80);
     }
 
     * { font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
@@ -86,85 +86,89 @@
       color: var(--text-primary); 
       min-height: 100vh; 
       overflow-x: hidden;
-      transition: background 0.5s ease, color 0.5s ease;
+      transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .dots {
       position: fixed;
       inset: 0;
       z-index: -1;
-      opacity: 0.4;
+      opacity: 0.35;
       pointer-events: none;
-      background-image: radial-gradient(circle, var(--dot-color) 0.8px, transparent 0.8px);
-      background-size: 28px 28px;
+      background-image: radial-gradient(circle, var(--dot-color) 0.6px, transparent 0.6px);
+      background-size: 32px 32px;
       transition: opacity 0.5s ease;
     }
 
     .orb { 
       position: fixed; 
       border-radius: 50%; 
-      filter: blur(120px); 
-      opacity: 0.45; 
+      filter: blur(140px); 
+      opacity: 0.50; 
       z-index: -1; 
-      animation: drift 20s ease-in-out infinite alternate; 
+      animation: drift 25s ease-in-out infinite alternate; 
       pointer-events: none;
       transition: background 0.5s ease;
     }
     .orb-1 { 
-      width: 500px; height: 500px; 
+      width: 600px; height: 600px; 
       background: radial-gradient(circle, var(--bg-orb-1), transparent 70%); 
-      top: -12%; left: -8%; 
+      top: -15%; left: -10%; 
     }
     .orb-2 { 
-      width: 400px; height: 400px; 
+      width: 500px; height: 500px; 
       background: radial-gradient(circle, var(--bg-orb-2), transparent 70%); 
-      bottom: -8%; right: -10%; 
-      animation-delay: -7s; 
+      bottom: -10%; right: -15%; 
+      animation-delay: -8s; 
     }
     .orb-3 { 
-      width: 350px; height: 350px; 
+      width: 400px; height: 400px; 
       background: radial-gradient(circle, var(--bg-orb-3), transparent 70%); 
-      top: 40%; left: 55%; 
-      animation-delay: -14s; 
+      top: 45%; left: 60%; 
+      animation-delay: -16s; 
     }
 
     @keyframes drift { 
       0% { transform: translate(0, 0) scale(1); } 
-      33% { transform: translate(35px, -35px) scale(1.12); } 
-      66% { transform: translate(-25px, 25px) scale(0.92); } 
-      100% { transform: translate(12px, -18px) scale(1.06); } 
+      33% { transform: translate(40px, -40px) scale(1.15); } 
+      66% { transform: translate(-30px, 30px) scale(0.90); } 
+      100% { transform: translate(15px, -20px) scale(1.08); } 
     }
 
     .glass { 
       background: var(--glass-bg); 
-      backdrop-filter: blur(20px); 
-      -webkit-backdrop-filter: blur(20px); 
+      backdrop-filter: blur(24px); 
+      -webkit-backdrop-filter: blur(24px); 
       border: 1px solid var(--glass-border); 
       box-shadow: var(--glass-shadow);
-      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .link-btn { 
       display: flex; 
       align-items: center; 
       gap: 16px; 
-      padding: 18px 22px; 
-      border-radius: 18px; 
+      padding: 20px 24px; 
+      border-radius: 20px; 
       background: var(--card-bg); 
       border: 1px solid var(--card-border); 
       color: var(--text-primary); 
       text-decoration: none; 
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
       position: relative; 
       overflow: hidden;
       box-shadow: var(--card-shadow);
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(60px) scale(0.95);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.4s ease,
+                  border-color 0.4s ease,
+                  background 0.4s ease;
     }
 
     .link-btn.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     .link-btn::before {
@@ -172,53 +176,53 @@
       position: absolute;
       inset: 0;
       background: radial-gradient(
-        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
         var(--spotlight),
         transparent 40%
       );
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.4s ease;
     }
 
     .link-btn:hover::before { opacity: 1; }
 
     .link-btn:hover { 
-      transform: translateY(-3px) scale(1.015); 
+      transform: translateY(-4px) scale(1.02); 
       border-color: var(--card-hover-border); 
       background: var(--card-hover-bg);
       box-shadow: var(--card-hover-shadow);
     }
 
-    .link-tiktok:hover { box-shadow: 0 12px 32px -8px rgba(255, 0, 80, 0.18); border-color: rgba(255, 0, 80, 0.20); }
-    .link-youtube:hover { box-shadow: 0 12px 32px -8px rgba(255, 0, 0, 0.18); border-color: rgba(255, 0, 0, 0.20); }
-    .link-insta:hover { box-shadow: 0 12px 32px -8px rgba(225, 48, 108, 0.18); border-color: rgba(225, 48, 108, 0.20); }
-    .link-telegram:hover { box-shadow: 0 12px 32px -8px rgba(0, 136, 204, 0.18); border-color: rgba(0, 136, 204, 0.20); }
-    .link-facebook:hover { box-shadow: 0 12px 32px -8px rgba(24, 119, 242, 0.18); border-color: rgba(24, 119, 242, 0.20); }
+    .link-tiktok:hover { box-shadow: 0 20px 40px -12px rgba(255, 0, 80, 0.15); border-color: rgba(255, 0, 80, 0.18); }
+    .link-youtube:hover { box-shadow: 0 20px 40px -12px rgba(255, 0, 0, 0.15); border-color: rgba(255, 0, 0, 0.18); }
+    .link-insta:hover { box-shadow: 0 20px 40px -12px rgba(225, 48, 108, 0.15); border-color: rgba(225, 48, 108, 0.18); }
+    .link-telegram:hover { box-shadow: 0 20px 40px -12px rgba(0, 136, 204, 0.15); border-color: rgba(0, 136, 204, 0.18); }
+    .link-facebook:hover { box-shadow: 0 20px 40px -12px rgba(24, 119, 242, 0.15); border-color: rgba(24, 119, 242, 0.18); }
 
     .avatar-wrap { 
       position: relative; 
-      width: 96px; height: 96px; 
-      margin: 0 auto 16px; 
+      width: 120px; height: 120px; 
+      margin: 0 auto 24px; 
       flex-shrink: 0;
     }
     .avatar-wrap::before { 
       content: ''; 
       position: absolute; 
-      inset: -3px; 
+      inset: -4px; 
       border-radius: 50%; 
-      background: conic-gradient(from 0deg, #6366f1, #22d3ee, #ec4899, #f59e0b, #6366f1); 
-      animation: spin 5s linear infinite; 
-      filter: blur(1px);
+      background: conic-gradient(from 0deg, #6366f1, #22d3ee, #ec4899, #f59e0b, #a855f7, #6366f1); 
+      animation: spin 6s linear infinite; 
+      filter: blur(2px);
     }
     .avatar-wrap::after {
       content: '';
       position: absolute;
-      inset: -5px;
+      inset: -8px;
       border-radius: 50%;
-      background: conic-gradient(from 0deg, #6366f1, #22d3ee, #ec4899, #f59e0b, #6366f1);
-      animation: spin 5s linear infinite;
-      opacity: 0.15;
-      filter: blur(8px);
+      background: conic-gradient(from 0deg, #6366f1, #22d3ee, #ec4899, #f59e0b, #a855f7, #6366f1);
+      animation: spin 6s linear infinite;
+      opacity: 0.12;
+      filter: blur(16px);
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -229,10 +233,10 @@
       background: var(--avatar-bg); 
       display: flex; 
       align-items: center; justify-content: center; 
-      border: 3px solid var(--avatar-border); 
+      border: 4px solid var(--avatar-border); 
       overflow: hidden; 
       z-index: 1;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
       transition: border-color 0.5s ease, background 0.5s ease;
     }
     .avatar img { 
@@ -240,23 +244,31 @@
       object-fit: cover; 
     }
 
-    /* Sticky profile header */
+    /* Sticky profile */
     .profile-sticky {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 40;
       background: var(--sticky-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--glass-border);
-      padding: 16px 20px;
-      margin: 0 -20px;
-      width: calc(100% + 40px);
-      transition: background 0.5s ease;
+      padding: 14px 24px;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease;
+      pointer-events: none;
+    }
+    .profile-sticky.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     .profile-inner {
-      max-width: 448px;
+      max-width: 480px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -264,17 +276,19 @@
     }
 
     .profile-sticky .avatar-wrap {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       margin: 0;
     }
-
     .profile-sticky .avatar-wrap::before,
     .profile-sticky .avatar-wrap::after {
       inset: -2px;
       filter: blur(0.5px);
     }
-
+    .profile-sticky .avatar-wrap::after {
+      filter: blur(4px);
+      opacity: 0.2;
+    }
     .profile-sticky .avatar {
       border-width: 2px;
     }
@@ -284,39 +298,35 @@
       font-weight: 700;
       color: var(--text-primary);
       margin: 0;
+      letter-spacing: -0.01em;
     }
-
     .profile-sticky .profile-text p {
       font-size: 12px;
       color: var(--text-secondary);
       margin: 2px 0 0;
     }
 
-    /* Hero profile (before scroll) */
+    /* Hero profile */
     .profile-hero {
       text-align: center;
-      padding: 20px 0 24px;
-    }
-
-    .profile-hero .avatar-wrap {
-      width: 108px;
-      height: 108px;
-      margin: 0 auto 20px;
+      padding: 16px 0 32px;
     }
 
     #toast { 
       position: fixed; 
-      bottom: 28px; 
+      bottom: 32px; 
       left: 50%; 
       transform: translateX(-50%) translateY(100px); 
       opacity: 0; 
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
       z-index: 100; 
       background: var(--toast-bg);
       color: var(--toast-text);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
       border: 1px solid var(--glass-border);
       box-shadow: var(--toast-shadow);
+      border-radius: 9999px;
+      padding: 14px 28px;
     }
     #toast.show { 
       transform: translateX(-50%) translateY(0); 
@@ -324,14 +334,14 @@
     }
 
     .icon-box { 
-      width: 44px; height: 44px; 
-      border-radius: 14px; 
+      width: 48px; height: 48px; 
+      border-radius: 16px; 
       display: flex; 
       align-items: center; justify-content: center; 
       flex-shrink: 0;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .link-btn:hover .icon-box { transform: scale(1.08) rotate(-4deg); }
+    .link-btn:hover .icon-box { transform: scale(1.1) rotate(-6deg); }
 
     .particle {
       position: fixed;
@@ -352,7 +362,7 @@
 
     .cursor-glow {
       position: fixed;
-      width: 350px; height: 350px;
+      width: 400px; height: 400px;
       background: radial-gradient(circle, var(--cursor-glow) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
@@ -364,20 +374,20 @@
     .verified {
       display: inline-flex;
       align-items: center; justify-content: center;
-      width: 16px; height: 16px;
+      width: 20px; height: 20px;
       background: linear-gradient(135deg, #6366f1, #22d3ee);
       border-radius: 50%;
-      margin-left: 4px;
+      margin-left: 6px;
       vertical-align: middle;
-      box-shadow: 0 2px 6px rgba(99,102,241,0.25);
+      box-shadow: 0 2px 8px rgba(99,102,241,0.30);
     }
     .verified svg {
-      width: 10px; height: 10px;
+      width: 11px; height: 11px;
     }
 
     .stat-item {
       text-align: center;
-      padding: 0 18px;
+      padding: 0 20px;
       position: relative;
     }
     .stat-item:not(:last-child)::after {
@@ -385,7 +395,7 @@
       position: absolute;
       right: 0; top: 50%;
       transform: translateY(-50%);
-      width: 1px; height: 18px;
+      width: 1px; height: 20px;
       background: var(--stat-divider);
       transition: background 0.5s ease;
     }
@@ -395,10 +405,10 @@
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .top-btn:hover { transform: scale(1.1); }
-    .top-btn:active { transform: scale(0.95); }
+    .top-btn:active { transform: scale(0.92); }
 
     .theme-toggle {
-      width: 40px; height: 40px;
+      width: 42px; height: 42px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -407,9 +417,9 @@
       border: 1px solid var(--card-border);
       cursor: pointer;
       color: var(--toggle-icon);
-      transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .theme-toggle:hover { transform: scale(1.1) rotate(12deg); }
+    .theme-toggle:hover { transform: scale(1.1) rotate(15deg); }
     .theme-toggle:active { transform: scale(0.92); }
     .theme-toggle svg {
       transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
@@ -420,7 +430,7 @@
       color: var(--text-muted);
     }
     .link-btn:hover .arrow-icon {
-      transform: translate(3px, -3px);
+      transform: translate(4px, -4px);
       color: var(--text-secondary);
     }
 
@@ -429,11 +439,26 @@
       color: var(--selection-text);
     }
 
+    /* Scroll indicator */
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      opacity: 0.5;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
     html { scroll-behavior: smooth; }
 
     @media (max-width: 480px) {
-      .link-btn { padding: 16px 18px; }
-      .profile-hero .avatar-wrap { width: 96px; height: 96px; }
+      .link-btn { padding: 18px 20px; }
+      .profile-hero .avatar-wrap { width: 104px; height: 104px; }
     }
   </style>
   <base target="_blank">
@@ -448,71 +473,7 @@
   <div class="cursor-glow" id="cursorGlow"></div>
   <div id="particles"></div>
 
-  <!-- Top controls -->
-  <div class="w-full max-w-md flex justify-between items-center py-6">
-    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-      <svg id="sunIcon" class="w-4 h-4 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-        <circle cx="12" cy="12" r="5"/>
-        <path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-      <svg id="moonIcon" class="w-4 h-4 absolute opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-      </svg>
-    </button>
-
-    <button onclick="copyLink()" class="top-btn p-3 rounded-full glass" aria-label="Copy link">
-      <svg class="w-4 h-4" style="color: var(--text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Hero Profile (visible before scroll) -->
-  <div class="profile-hero w-full max-w-md">
-    <div class="avatar-wrap">
-      <div class="avatar">
-        <img src="https://i.imgur.com/TSyYWpZ.jpeg" alt="First News Profile">
-      </div>
-    </div>
-
-    <div class="flex items-center justify-center gap-1 mb-2">
-      <h1 class="text-3xl font-bold tracking-tight" style="color: var(--text-primary);">First News</h1>
-      <span class="verified">
-        <svg class="text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-        </svg>
-      </span>
-    </div>
-
-    <p class="text-sm mb-4 max-w-xs mx-auto leading-relaxed" style="color: var(--text-secondary);">Breaking news from all over the world. Stay informed, stay ahead.</p>
-
-    <div class="inline-flex items-center gap-2 text-xs glass px-4 py-2 rounded-full" style="color: var(--text-secondary);">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-      </span>
-      <span class="font-medium">Online now</span>
-    </div>
-
-    <div class="flex items-center justify-center mt-6">
-      <div class="glass rounded-2xl px-6 py-3 flex items-center">
-        <div class="stat-item">
-          <div class="text-sm font-bold" style="color: var(--text-primary);">5</div>
-          <div class="text-[10px] uppercase tracking-wider mt-0.5" style="color: var(--text-muted);">Platforms</div>
-        </div>
-        <div class="stat-item">
-          <div class="text-sm font-bold" style="color: var(--text-primary);">24/7</div>
-          <div class="text-[10px] uppercase tracking-wider mt-0.5" style="color: var(--text-muted);">Updates</div>
-        </div>
-        <div class="stat-item">
-          <div class="text-sm font-bold" style="color: var(--text-primary);">Global</div>
-          <div class="text-[10px] uppercase tracking-wider mt-0.5" style="color: var(--text-muted);">Coverage</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sticky Profile Bar (appears when scrolled) -->
+  <!-- Sticky Profile Bar -->
   <div class="profile-sticky" id="stickyProfile">
     <div class="profile-inner">
       <div class="avatar-wrap">
@@ -521,7 +482,7 @@
         </div>
       </div>
       <div class="profile-text">
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1.5">
           <h1>First News</h1>
           <span class="verified">
             <svg class="text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
@@ -534,41 +495,111 @@
     </div>
   </div>
 
-  <!-- Links - scroll up and slide into the sticky profile area -->
-  <div class="w-full max-w-md space-y-3 pb-12 pt-4">
+  <!-- Top controls -->
+  <div class="w-full max-w-md flex justify-between items-center pt-8 pb-6">
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+      <svg id="sunIcon" class="w-[18px] h-[18px] absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <svg id="moonIcon" class="w-[18px] h-[18px] absolute opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+    </button>
+
+    <button onclick="copyLink()" class="top-btn p-3 rounded-full glass" aria-label="Copy link">
+      <svg class="w-[18px] h-[18px]" style="color: var(--text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Hero Profile -->
+  <div class="profile-hero w-full max-w-md">
+    <div class="avatar-wrap">
+      <div class="avatar">
+        <img src="https://i.imgur.com/TSyYWpZ.jpeg" alt="First News Profile">
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-1.5 mb-3">
+      <h1 class="text-[28px] font-bold tracking-tight" style="color: var(--text-primary); letter-spacing: -0.02em;">First News</h1>
+      <span class="verified">
+        <svg class="text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </span>
+    </div>
+
+    <p class="text-sm mb-5 max-w-[280px] mx-auto leading-relaxed" style="color: var(--text-secondary);">Breaking news from all over the world. Stay informed, stay ahead.</p>
+
+    <div class="inline-flex items-center gap-2 text-xs glass px-4 py-2 rounded-full" style="color: var(--text-secondary);">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+      </span>
+      <span class="font-medium">Online now</span>
+    </div>
+
+    <div class="flex items-center justify-center mt-8">
+      <div class="glass rounded-2xl px-8 py-3.5 flex items-center">
+        <div class="stat-item">
+          <div class="text-[15px] font-bold" style="color: var(--text-primary);">5</div>
+          <div class="text-[10px] uppercase tracking-wider mt-1 font-medium" style="color: var(--text-muted);">Platforms</div>
+        </div>
+        <div class="stat-item">
+          <div class="text-[15px] font-bold" style="color: var(--text-primary);">24/7</div>
+          <div class="text-[10px] uppercase tracking-wider mt-1 font-medium" style="color: var(--text-muted);">Updates</div>
+        </div>
+        <div class="stat-item">
+          <div class="text-[15px] font-bold" style="color: var(--text-primary);">Global</div>
+          <div class="text-[10px] uppercase tracking-wider mt-1 font-medium" style="color: var(--text-muted);">Coverage</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" id="scrollHint">
+      <svg class="w-5 h-5" style="color: var(--text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="w-full max-w-md space-y-3.5 pb-6 pt-2">
 
     <a href="https://tiktok.com/@absiniyaetbiopoa1" target="_blank" rel="noopener" class="link-btn link-tiktok">
-      <div class="icon-box bg-rose-50">
-        <svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
+      <div class="icon-box" style="background: rgba(255,0,80,0.08);">
+        <svg class="w-5 h-5 text-[#ff0050]" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm" style="color: var(--text-primary);">TikTok</div>
-        <div class="text-xs truncate" style="color: var(--text-muted);">@absiniyaetbiopoa1</div>
+        <div class="font-semibold text-[15px]" style="color: var(--text-primary);">TikTok</div>
+        <div class="text-xs truncate mt-0.5" style="color: var(--text-muted);">@absiniyaetbiopoa1</div>
       </div>
-      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
 
     <a href="https://youtube.com/@AbrshNews" target="_blank" rel="noopener" class="link-btn link-youtube">
-      <div class="icon-box bg-red-50">
+      <div class="icon-box" style="background: rgba(239,68,68,0.08);">
         <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm" style="color: var(--text-primary);">YouTube</div>
-        <div class="text-xs truncate" style="color: var(--text-muted);">@AbrshNews</div>
+        <div class="font-semibold text-[15px]" style="color: var(--text-primary);">YouTube</div>
+        <div class="text-xs truncate mt-0.5" style="color: var(--text-muted);">@AbrshNews</div>
       </div>
-      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
 
     <a href="https://instagram.com/abrshnews" target="_blank" rel="noopener" class="link-btn link-insta">
-      <div class="icon-box bg-pink-50">
+      <div class="icon-box" style="background: rgba(236,72,153,0.08);">
         <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect>
           <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"></path>
@@ -576,40 +607,40 @@
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm" style="color: var(--text-primary);">Instagram</div>
-        <div class="text-xs truncate" style="color: var(--text-muted);">@abrshnews</div>
+        <div class="font-semibold text-[15px]" style="color: var(--text-primary);">Instagram</div>
+        <div class="text-xs truncate mt-0.5" style="color: var(--text-muted);">@abrshnews</div>
       </div>
-      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
 
     <a href="https://t.me/FirstNews1221" target="_blank" rel="noopener" class="link-btn link-telegram">
-      <div class="icon-box bg-sky-50">
+      <div class="icon-box" style="background: rgba(14,165,233,0.08);">
         <svg class="w-5 h-5 text-sky-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm" style="color: var(--text-primary);">Telegram</div>
-        <div class="text-xs truncate" style="color: var(--text-muted);">@FirstNews1221</div>
+        <div class="font-semibold text-[15px]" style="color: var(--text-primary);">Telegram</div>
+        <div class="text-xs truncate mt-0.5" style="color: var(--text-muted);">@FirstNews1221</div>
       </div>
-      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
 
     <a href="https://facebook.com/AbrshNews12" target="_blank" rel="noopener" class="link-btn link-facebook">
-      <div class="icon-box bg-blue-50">
+      <div class="icon-box" style="background: rgba(37,99,235,0.08);">
         <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm" style="color: var(--text-primary);">Facebook</div>
-        <div class="text-xs truncate" style="color: var(--text-muted);">@AbrshNews12</div>
+        <div class="font-semibold text-[15px]" style="color: var(--text-primary);">Facebook</div>
+        <div class="text-xs truncate mt-0.5" style="color: var(--text-muted);">@AbrshNews12</div>
       </div>
-      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
@@ -617,18 +648,18 @@
   </div>
 
   <!-- Footer -->
-  <div class="pb-12 text-center">
-    <p class="text-[11px] tracking-[0.2em] uppercase font-medium" style="color: var(--text-footer);">First News &copy; 2026</p>
+  <div class="pb-12 pt-4 text-center">
+    <p class="text-[11px] tracking-[0.25em] uppercase font-semibold" style="color: var(--text-footer);">First News &copy; 2026</p>
   </div>
 
   <!-- Toast -->
-  <div id="toast" class="px-6 py-3.5 rounded-full flex items-center gap-3 text-sm">
-    <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
-      <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div id="toast" class="flex items-center gap-3 text-sm font-medium">
+    <div class="w-6 h-6 rounded-full bg-emerald-500/15 flex items-center justify-center">
+      <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
       </svg>
     </div>
-    <span class="font-medium">Link copied to clipboard</span>
+    <span>Link copied to clipboard</span>
   </div>
 
   <script>
@@ -709,8 +740,8 @@
     });
 
     function animateGlow() {
-      glowX += (mouseX - glowX) * 0.08;
-      glowY += (mouseY - glowY) * 0.08;
+      glowX += (mouseX - glowX) * 0.06;
+      glowY += (mouseY - glowY) * 0.06;
       cursorGlow.style.left = glowX + 'px';
       cursorGlow.style.top = glowY + 'px';
       requestAnimationFrame(animateGlow);
@@ -723,7 +754,7 @@
       particle.className = 'particle';
       particle.style.left = Math.random() * 100 + 'vw';
       particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
-      particle.style.opacity = Math.random() * 0.4 + 0.1;
+      particle.style.opacity = Math.random() * 0.3 + 0.05;
       const size = Math.random() * 3 + 1;
       particle.style.width = size + 'px';
       particle.style.height = size + 'px';
@@ -742,9 +773,9 @@
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 18;
-        const rotateY = (centerX - x) / 18;
-        btn.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px) scale(1.015)`;
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        btn.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.02)`;
       });
 
       btn.addEventListener('mouseleave', () => {
@@ -752,37 +783,41 @@
       });
     });
 
-    // Scroll reveal for link cards
+    // Scroll reveal with stagger
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, index * 80);
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.link-btn').forEach(btn => observer.observe(btn));
 
     // Sticky profile show/hide
     const stickyProfile = document.getElementById('stickyProfile');
     const heroProfile = document.querySelector('.profile-hero');
+    const scrollHint = document.getElementById('scrollHint');
 
     window.addEventListener('scroll', () => {
       const heroBottom = heroProfile.getBoundingClientRect().bottom;
-      if (heroBottom < 80) {
-        stickyProfile.style.opacity = '1';
-        stickyProfile.style.transform = 'translateY(0)';
+      if (heroBottom < 100) {
+        stickyProfile.classList.add('show');
       } else {
-        stickyProfile.style.opacity = '0';
-        stickyProfile.style.transform = 'translateY(-100%)';
+        stickyProfile.classList.remove('show');
+      }
+
+      // Hide scroll hint after scrolling
+      if (window.scrollY > 50) {
+        scrollHint.style.opacity = '0';
+        scrollHint.style.transition = 'opacity 0.3s ease';
+      } else {
+        scrollHint.style.opacity = '0.5';
       }
     });
-
-    // Init sticky profile hidden
-    stickyProfile.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-    stickyProfile.style.opacity = '0';
-    stickyProfile.style.transform = 'translateY(-100%)';
   </script>
 </body>
 </html>
