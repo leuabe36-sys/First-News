@@ -10,7 +10,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
-      /* Light theme (default) */
       --bg: #f8f9fb;
       --bg-orb-1: rgba(99,102,241,0.35);
       --bg-orb-2: rgba(236,72,153,0.30);
@@ -88,7 +87,6 @@
       transition: background 0.5s ease, color 0.5s ease;
     }
 
-    /* Dot pattern overlay */
     .dots {
       position: fixed;
       inset: 0;
@@ -100,7 +98,6 @@
       transition: opacity 0.5s ease;
     }
 
-    /* Ambient orbs */
     .orb { 
       position: fixed; 
       border-radius: 50%; 
@@ -136,7 +133,6 @@
       100% { transform: translate(12px, -18px) scale(1.06); } 
     }
 
-    /* Glass */
     .glass { 
       background: var(--glass-bg); 
       backdrop-filter: blur(20px); 
@@ -146,7 +142,6 @@
       transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
     }
 
-    /* Link buttons */
     .link-btn { 
       display: flex; 
       align-items: center; 
@@ -191,7 +186,6 @@
     .link-telegram:hover { box-shadow: 0 12px 32px -8px rgba(0, 136, 204, 0.18); border-color: rgba(0, 136, 204, 0.20); }
     .link-facebook:hover { box-shadow: 0 12px 32px -8px rgba(24, 119, 242, 0.18); border-color: rgba(24, 119, 242, 0.20); }
 
-    /* Avatar */
     .avatar-wrap { 
       position: relative; 
       width: 108px; height: 108px; 
@@ -238,24 +232,38 @@
     }
     .avatar:hover img { transform: scale(1.08); }
 
-    /* Stagger */
-    .stagger { 
+    /* Horizontal slide animations */
+    .slide-left { 
+      opacity: 0; 
+      transform: translateX(-40px); 
+      animation: slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+    }
+    .slide-right { 
+      opacity: 0; 
+      transform: translateX(40px); 
+      animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+    }
+    .slide-up { 
       opacity: 0; 
       transform: translateY(24px); 
-      animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+      animation: slideInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
     }
-    .stagger:nth-child(1) { animation-delay: 0.08s; } 
-    .stagger:nth-child(2) { animation-delay: 0.14s; } 
-    .stagger:nth-child(3) { animation-delay: 0.20s; } 
-    .stagger:nth-child(4) { animation-delay: 0.26s; } 
-    .stagger:nth-child(5) { animation-delay: 0.32s; } 
-    .stagger:nth-child(6) { animation-delay: 0.38s; } 
-    .stagger:nth-child(7) { animation-delay: 0.44s; } 
-    .stagger:nth-child(8) { animation-delay: 0.50s; } 
-    .stagger:nth-child(9) { animation-delay: 0.56s; }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-    /* Toast */
+    @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* Stagger delays */
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.14s; }
+    .delay-3 { animation-delay: 0.20s; }
+    .delay-4 { animation-delay: 0.26s; }
+    .delay-5 { animation-delay: 0.32s; }
+    .delay-6 { animation-delay: 0.38s; }
+    .delay-7 { animation-delay: 0.44s; }
+    .delay-8 { animation-delay: 0.50s; }
+    .delay-9 { animation-delay: 0.56s; }
+
     #toast { 
       position: fixed; 
       bottom: 28px; 
@@ -275,7 +283,6 @@
       opacity: 1; 
     }
 
-    /* Icon boxes */
     .icon-box { 
       width: 44px; height: 44px; 
       border-radius: 14px; 
@@ -286,7 +293,6 @@
     }
     .link-btn:hover .icon-box { transform: scale(1.08) rotate(-4deg); }
 
-    /* Particles */
     .particle {
       position: fixed;
       width: 3px; height: 3px;
@@ -304,7 +310,6 @@
       100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
 
-    /* Cursor glow */
     .cursor-glow {
       position: fixed;
       width: 350px; height: 350px;
@@ -316,7 +321,6 @@
       transition: background 0.5s ease;
     }
 
-    /* Verified badge */
     .verified {
       display: inline-flex;
       align-items: center; justify-content: center;
@@ -328,7 +332,6 @@
       box-shadow: 0 2px 6px rgba(99,102,241,0.25);
     }
 
-    /* Stats */
     .stat-item {
       text-align: center;
       padding: 0 18px;
@@ -344,7 +347,6 @@
       transition: background 0.5s ease;
     }
 
-    /* Share & Toggle buttons */
     .top-btn {
       position: relative;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -352,7 +354,6 @@
     .top-btn:hover { transform: scale(1.1); }
     .top-btn:active { transform: scale(0.95); }
 
-    /* Theme toggle specific */
     .theme-toggle {
       width: 40px; height: 40px;
       border-radius: 50%;
@@ -371,7 +372,6 @@
       transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
     }
 
-    /* Arrow icon */
     .arrow-icon {
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.5s ease;
       color: var(--text-muted);
@@ -381,7 +381,6 @@
       color: var(--text-secondary);
     }
 
-    /* Selection */
     ::selection {
       background: var(--selection-bg);
       color: var(--selection-text);
@@ -399,7 +398,6 @@
 </head>
 <body class="flex flex-col items-center px-5 py-12 relative">
 
-  <!-- Background -->
   <div class="dots"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -408,21 +406,17 @@
   <div id="particles"></div>
 
   <!-- Top controls -->
-  <div class="w-full max-w-md flex justify-between items-center mb-8 stagger">
-    <!-- Theme toggle -->
+  <div class="w-full max-w-md flex justify-between items-center mb-8 slide-left delay-1">
     <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-      <!-- Sun -->
       <svg id="sunIcon" class="w-4 h-4 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
         <circle cx="12" cy="12" r="5"/>
         <path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
       </svg>
-      <!-- Moon -->
       <svg id="moonIcon" class="w-4 h-4 absolute opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
       </svg>
     </button>
 
-    <!-- Share -->
     <button onclick="copyLink()" class="top-btn p-3 rounded-full glass" aria-label="Copy link">
       <svg class="w-4 h-4" style="color: var(--text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
@@ -431,14 +425,14 @@
   </div>
 
   <!-- Profile -->
-  <div class="text-center mb-10 w-full max-w-md">
-    <div class="avatar-wrap stagger">
+  <div class="text-center mb-10 w-full max-w-md slide-right delay-2">
+    <div class="avatar-wrap">
       <div class="avatar">
         <img src="https://i.imgur.com/TSyYWpZ.jpeg" alt="First News Profile">
       </div>
     </div>
 
-    <div class="flex items-center justify-center gap-1 mb-2 stagger">
+    <div class="flex items-center justify-center gap-1 mb-2">
       <h1 class="text-3xl font-bold tracking-tight" style="color: var(--text-primary);">First News</h1>
       <span class="verified">
         <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
@@ -449,7 +443,7 @@
 
     <p class="text-sm mb-4 max-w-xs mx-auto leading-relaxed" style="color: var(--text-secondary);">Breaking news from all over the world. Stay informed, stay ahead.</p>
 
-    <div class="inline-flex items-center gap-2 text-xs glass px-4 py-2 rounded-full stagger" style="color: var(--text-secondary);">
+    <div class="inline-flex items-center gap-2 text-xs glass px-4 py-2 rounded-full" style="color: var(--text-secondary);">
       <span class="relative flex h-2 w-2">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
@@ -458,7 +452,7 @@
     </div>
 
     <!-- Stats -->
-    <div class="flex items-center justify-center mt-6 stagger">
+    <div class="flex items-center justify-center mt-6">
       <div class="glass rounded-2xl px-6 py-3 flex items-center">
         <div class="stat-item">
           <div class="text-sm font-bold" style="color: var(--text-primary);">5</div>
@@ -479,7 +473,7 @@
   <!-- Links -->
   <div class="w-full max-w-md space-y-3">
 
-    <a href="https://tiktok.com/@absiniyaetbiopoa1" target="_blank" rel="noopener" class="link-btn link-tiktok stagger">
+    <a href="https://tiktok.com/@absiniyaetbiopoa1" target="_blank" rel="noopener" class="link-btn link-tiktok slide-left delay-3">
       <div class="icon-box bg-rose-50">
         <svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
@@ -494,7 +488,7 @@
       </svg>
     </a>
 
-    <a href="https://youtube.com/@AbrshNews" target="_blank" rel="noopener" class="link-btn link-youtube stagger">
+    <a href="https://youtube.com/@AbrshNews" target="_blank" rel="noopener" class="link-btn link-youtube slide-right delay-4">
       <div class="icon-box bg-red-50">
         <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -509,7 +503,7 @@
       </svg>
     </a>
 
-    <a href="https://instagram.com/abrshnews" target="_blank" rel="noopener" class="link-btn link-insta stagger">
+    <a href="https://instagram.com/abrshnews" target="_blank" rel="noopener" class="link-btn link-insta slide-left delay-5">
       <div class="icon-box bg-pink-50">
         <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect>
@@ -526,7 +520,7 @@
       </svg>
     </a>
 
-    <a href="https://t.me/FirstNews1221" target="_blank" rel="noopener" class="link-btn link-telegram stagger">
+    <a href="https://t.me/FirstNews1221" target="_blank" rel="noopener" class="link-btn link-telegram slide-right delay-6">
       <div class="icon-box bg-sky-50">
         <svg class="w-5 h-5 text-sky-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
@@ -541,7 +535,7 @@
       </svg>
     </a>
 
-    <a href="https://facebook.com/AbrshNews12" target="_blank" rel="noopener" class="link-btn link-facebook stagger">
+    <a href="https://facebook.com/AbrshNews12" target="_blank" rel="noopener" class="link-btn link-facebook slide-left delay-7">
       <div class="icon-box bg-blue-50">
         <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -559,7 +553,7 @@
   </div>
 
   <!-- Footer -->
-  <div class="mt-12 text-center stagger">
+  <div class="mt-12 text-center slide-up delay-8">
     <p class="text-[11px] tracking-[0.2em] uppercase font-medium" style="color: var(--text-footer);">First News &copy; 2026</p>
   </div>
 
@@ -597,7 +591,6 @@
       localStorage.setItem('theme', theme);
     }
 
-    // Init theme
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (saved === 'dark' || (!saved && prefersDark)) {
