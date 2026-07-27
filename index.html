@@ -9,90 +9,158 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * { font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body { 
-      background: #030303; 
-      color: #fff; 
-      min-height: 100vh; 
-      overflow-x: hidden;
-      cursor: default;
+    :root {
+      /* Light theme (default) */
+      --bg: #f8f9fb;
+      --bg-orb-1: rgba(99,102,241,0.35);
+      --bg-orb-2: rgba(236,72,153,0.30);
+      --bg-orb-3: rgba(34,211,238,0.30);
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --text-footer: #9ca3af;
+      --card-bg: rgba(255,255,255,0.85);
+      --card-border: rgba(0,0,0,0.04);
+      --card-hover-border: rgba(0,0,0,0.06);
+      --card-hover-bg: rgba(255,255,255,0.95);
+      --card-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 4px 8px rgba(0,0,0,0.02);
+      --card-hover-shadow: 0 12px 32px -8px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.03);
+      --glass-bg: rgba(255,255,255,0.65);
+      --glass-border: rgba(255,255,255,0.8);
+      --glass-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+      --spotlight: rgba(99,102,241,0.06);
+      --cursor-glow: rgba(99,102,241,0.04);
+      --particle: rgba(99,102,241,0.20);
+      --dot-color: #c7c7c7;
+      --selection-bg: rgba(99,102,241,0.20);
+      --selection-text: #111827;
+      --avatar-border: #f8f9fb;
+      --avatar-bg: #fff;
+      --toast-bg: rgba(255,255,255,0.85);
+      --toast-text: #1f2937;
+      --toast-shadow: 0 10px 40px -10px rgba(0,0,0,0.10);
+      --toggle-bg: #e5e7eb;
+      --toggle-icon: #6b7280;
+      --stat-divider: rgba(0,0,0,0.06);
     }
 
-    /* Ambient background orbs */
+    [data-theme="dark"] {
+      --bg: #030303;
+      --bg-orb-1: rgba(52,211,153,0.40);
+      --bg-orb-2: rgba(168,85,247,0.35);
+      --bg-orb-3: rgba(34,211,238,0.25);
+      --text-primary: #ffffff;
+      --text-secondary: #a3a3a3;
+      --text-muted: #737373;
+      --text-footer: #525252;
+      --card-bg: rgba(255,255,255,0.03);
+      --card-border: rgba(255,255,255,0.05);
+      --card-hover-border: rgba(255,255,255,0.12);
+      --card-hover-bg: rgba(255,255,255,0.05);
+      --card-shadow: none;
+      --card-hover-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+      --glass-bg: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --glass-shadow: none;
+      --spotlight: rgba(255,255,255,0.06);
+      --cursor-glow: rgba(255,255,255,0.03);
+      --particle: rgba(255,255,255,0.15);
+      --dot-color: transparent;
+      --selection-bg: rgba(52,211,153,0.30);
+      --selection-text: #ffffff;
+      --avatar-border: #0a0a0a;
+      --avatar-bg: #0a0a0a;
+      --toast-bg: rgba(255,255,255,0.06);
+      --toast-text: #ffffff;
+      --toast-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+      --toggle-bg: #262626;
+      --toggle-icon: #a3a3a3;
+      --stat-divider: rgba(255,255,255,0.08);
+    }
+
+    * { font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { 
+      background: var(--bg); 
+      color: var(--text-primary); 
+      min-height: 100vh; 
+      overflow-x: hidden;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    /* Dot pattern overlay */
+    .dots {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.4;
+      pointer-events: none;
+      background-image: radial-gradient(circle, var(--dot-color) 0.8px, transparent 0.8px);
+      background-size: 28px 28px;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Ambient orbs */
     .orb { 
       position: fixed; 
       border-radius: 50%; 
       filter: blur(120px); 
-      opacity: 0.35; 
+      opacity: 0.45; 
       z-index: -1; 
-      animation: drift 25s ease-in-out infinite alternate; 
+      animation: drift 20s ease-in-out infinite alternate; 
       pointer-events: none;
+      transition: background 0.5s ease;
     }
     .orb-1 { 
-      width: 500px; 
-      height: 500px; 
-      background: radial-gradient(circle, rgba(52,211,153,0.5), transparent 70%); 
-      top: -15%; 
-      left: -10%; 
+      width: 500px; height: 500px; 
+      background: radial-gradient(circle, var(--bg-orb-1), transparent 70%); 
+      top: -12%; left: -8%; 
     }
     .orb-2 { 
-      width: 450px; 
-      height: 450px; 
-      background: radial-gradient(circle, rgba(168,85,247,0.4), transparent 70%); 
-      bottom: -10%; 
-      right: -15%; 
-      animation-delay: -8s; 
+      width: 400px; height: 400px; 
+      background: radial-gradient(circle, var(--bg-orb-2), transparent 70%); 
+      bottom: -8%; right: -10%; 
+      animation-delay: -7s; 
     }
     .orb-3 { 
-      width: 350px; 
-      height: 350px; 
-      background: radial-gradient(circle, rgba(34,211,238,0.3), transparent 70%); 
-      top: 45%; 
-      left: 55%; 
-      animation-delay: -16s; 
+      width: 350px; height: 350px; 
+      background: radial-gradient(circle, var(--bg-orb-3), transparent 70%); 
+      top: 40%; left: 55%; 
+      animation-delay: -14s; 
     }
 
     @keyframes drift { 
       0% { transform: translate(0, 0) scale(1); } 
-      33% { transform: translate(40px, -40px) scale(1.15); } 
-      66% { transform: translate(-30px, 30px) scale(0.9); } 
-      100% { transform: translate(15px, -20px) scale(1.08); } 
+      33% { transform: translate(35px, -35px) scale(1.12); } 
+      66% { transform: translate(-25px, 25px) scale(0.92); } 
+      100% { transform: translate(12px, -18px) scale(1.06); } 
     }
 
-    /* Noise texture overlay */
-    .noise {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      opacity: 0.025;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-
-    /* Glass card base */
+    /* Glass */
     .glass { 
-      background: rgba(255, 255, 255, 0.025); 
-      backdrop-filter: blur(24px); 
-      -webkit-backdrop-filter: blur(24px); 
-      border: 1px solid rgba(255, 255, 255, 0.06); 
+      background: var(--glass-bg); 
+      backdrop-filter: blur(20px); 
+      -webkit-backdrop-filter: blur(20px); 
+      border: 1px solid var(--glass-border); 
+      box-shadow: var(--glass-shadow);
+      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
     }
 
-    /* Link buttons with spotlight effect */
+    /* Link buttons */
     .link-btn { 
       display: flex; 
       align-items: center; 
       gap: 16px; 
       padding: 18px 22px; 
       border-radius: 18px; 
-      background: rgba(255, 255, 255, 0.02); 
-      border: 1px solid rgba(255, 255, 255, 0.05); 
-      color: #fff; 
+      background: var(--card-bg); 
+      border: 1px solid var(--card-border); 
+      color: var(--text-primary); 
       text-decoration: none; 
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
       position: relative; 
       overflow: hidden;
-      transform-style: preserve-3d;
+      box-shadow: var(--card-shadow);
     }
 
     .link-btn::before {
@@ -100,51 +168,33 @@
       position: absolute;
       inset: 0;
       background: radial-gradient(
-        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(255, 255, 255, 0.06),
+        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--spotlight),
         transparent 40%
       );
       opacity: 0;
       transition: opacity 0.3s;
     }
 
-    .link-btn:hover::before {
-      opacity: 1;
-    }
+    .link-btn:hover::before { opacity: 1; }
 
     .link-btn:hover { 
-      transform: translateY(-3px) scale(1.02); 
-      border-color: rgba(255, 255, 255, 0.12); 
-      background: rgba(255, 255, 255, 0.04);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      transform: translateY(-3px) scale(1.015); 
+      border-color: var(--card-hover-border); 
+      background: var(--card-hover-bg);
+      box-shadow: var(--card-hover-shadow);
     }
 
-    .link-tiktok:hover { 
-      box-shadow: 0 20px 50px -15px rgba(255, 0, 80, 0.25); 
-      border-color: rgba(255, 0, 80, 0.25); 
-    }
-    .link-youtube:hover { 
-      box-shadow: 0 20px 50px -15px rgba(255, 0, 0, 0.25); 
-      border-color: rgba(255, 0, 0, 0.25); 
-    }
-    .link-insta:hover { 
-      box-shadow: 0 20px 50px -15px rgba(225, 48, 108, 0.25); 
-      border-color: rgba(225, 48, 108, 0.25); 
-    }
-    .link-telegram:hover { 
-      box-shadow: 0 20px 50px -15px rgba(0, 136, 204, 0.25); 
-      border-color: rgba(0, 136, 204, 0.25); 
-    }
-    .link-facebook:hover { 
-      box-shadow: 0 20px 50px -15px rgba(24, 119, 242, 0.25); 
-      border-color: rgba(24, 119, 242, 0.25); 
-    }
+    .link-tiktok:hover { box-shadow: 0 12px 32px -8px rgba(255, 0, 80, 0.18); border-color: rgba(255, 0, 80, 0.20); }
+    .link-youtube:hover { box-shadow: 0 12px 32px -8px rgba(255, 0, 0, 0.18); border-color: rgba(255, 0, 0, 0.20); }
+    .link-insta:hover { box-shadow: 0 12px 32px -8px rgba(225, 48, 108, 0.18); border-color: rgba(225, 48, 108, 0.20); }
+    .link-telegram:hover { box-shadow: 0 12px 32px -8px rgba(0, 136, 204, 0.18); border-color: rgba(0, 136, 204, 0.20); }
+    .link-facebook:hover { box-shadow: 0 12px 32px -8px rgba(24, 119, 242, 0.18); border-color: rgba(24, 119, 242, 0.20); }
 
-    /* Avatar with animated gradient ring */
+    /* Avatar */
     .avatar-wrap { 
       position: relative; 
-      width: 104px; 
-      height: 104px; 
+      width: 108px; height: 108px; 
       margin: 0 auto 20px; 
     }
     .avatar-wrap::before { 
@@ -152,70 +202,60 @@
       position: absolute; 
       inset: -4px; 
       border-radius: 50%; 
-      background: conic-gradient(from 0deg, #34d399, #22d3ee, #a78bfa, #f472b6, #34d399); 
-      animation: spin 6s linear infinite; 
-      filter: blur(2px);
-      opacity: 0.8;
+      background: conic-gradient(from 0deg, #6366f1, #22d3ee, #ec4899, #f59e0b, #6366f1); 
+      animation: spin 5s linear infinite; 
+      filter: blur(1px);
     }
     .avatar-wrap::after {
       content: '';
       position: absolute;
-      inset: -4px;
+      inset: -6px;
       border-radius: 50%;
-      background: conic-gradient(from 0deg, #34d399, #22d3ee, #a78bfa, #f472b6, #34d399);
-      animation: spin 6s linear infinite;
-      opacity: 0.3;
-      filter: blur(8px);
+      background: conic-gradient(from 0deg, #6366f1, #22d3ee, #ec4899, #f59e0b, #6366f1);
+      animation: spin 5s linear infinite;
+      opacity: 0.15;
+      filter: blur(10px);
     }
-    
-    @keyframes spin { 
-      to { transform: rotate(360deg); } 
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .avatar { 
       position: relative; 
-      width: 100%; 
-      height: 100%; 
+      width: 100%; height: 100%; 
       border-radius: 50%; 
-      background: #0a0a0a; 
+      background: var(--avatar-bg); 
       display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      border: 3px solid #0a0a0a; 
+      align-items: center; justify-content: center; 
+      border: 4px solid var(--avatar-border); 
       overflow: hidden; 
       z-index: 1;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: border-color 0.5s ease, background 0.5s ease;
     }
     .avatar img { 
-      width: 100%; 
-      height: 100%; 
+      width: 100%; height: 100%; 
       object-fit: cover; 
       transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .avatar:hover img {
-      transform: scale(1.08);
-    }
+    .avatar:hover img { transform: scale(1.08); }
 
-    /* Stagger animations */
+    /* Stagger */
     .stagger { 
       opacity: 0; 
-      transform: translateY(30px); 
-      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+      transform: translateY(24px); 
+      animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
     }
-    .stagger:nth-child(1) { animation-delay: 0.1s; } 
-    .stagger:nth-child(2) { animation-delay: 0.18s; } 
-    .stagger:nth-child(3) { animation-delay: 0.26s; } 
-    .stagger:nth-child(4) { animation-delay: 0.34s; } 
-    .stagger:nth-child(5) { animation-delay: 0.42s; } 
-    .stagger:nth-child(6) { animation-delay: 0.5s; } 
-    .stagger:nth-child(7) { animation-delay: 0.58s; } 
-    .stagger:nth-child(8) { animation-delay: 0.66s; } 
-    .stagger:nth-child(9) { animation-delay: 0.74s; }
+    .stagger:nth-child(1) { animation-delay: 0.08s; } 
+    .stagger:nth-child(2) { animation-delay: 0.14s; } 
+    .stagger:nth-child(3) { animation-delay: 0.20s; } 
+    .stagger:nth-child(4) { animation-delay: 0.26s; } 
+    .stagger:nth-child(5) { animation-delay: 0.32s; } 
+    .stagger:nth-child(6) { animation-delay: 0.38s; } 
+    .stagger:nth-child(7) { animation-delay: 0.44s; } 
+    .stagger:nth-child(8) { animation-delay: 0.50s; } 
+    .stagger:nth-child(9) { animation-delay: 0.56s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-    @keyframes fadeUp { 
-      to { opacity: 1; transform: translateY(0); } 
-    }
-
-    /* Toast notification */
+    /* Toast */
     #toast { 
       position: fixed; 
       bottom: 28px; 
@@ -224,6 +264,11 @@
       opacity: 0; 
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
       z-index: 100; 
+      background: var(--toast-bg);
+      color: var(--toast-text);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--toast-shadow);
     }
     #toast.show { 
       transform: translateX(-50%) translateY(0); 
@@ -232,29 +277,25 @@
 
     /* Icon boxes */
     .icon-box { 
-      width: 46px; 
-      height: 46px; 
+      width: 44px; height: 44px; 
       border-radius: 14px; 
       display: flex; 
-      align-items: center; 
-      justify-content: center; 
+      align-items: center; justify-content: center; 
       flex-shrink: 0;
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .link-btn:hover .icon-box {
-      transform: scale(1.1) rotate(-5deg);
-    }
+    .link-btn:hover .icon-box { transform: scale(1.08) rotate(-4deg); }
 
-    /* Floating particles */
+    /* Particles */
     .particle {
       position: fixed;
-      width: 3px;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.15);
+      width: 3px; height: 3px;
+      background: var(--particle);
       border-radius: 50%;
       pointer-events: none;
       z-index: -1;
       animation: float-up linear infinite;
+      transition: background 0.5s ease;
     }
     @keyframes float-up {
       0% { transform: translateY(100vh) scale(0); opacity: 0; }
@@ -266,104 +307,124 @@
     /* Cursor glow */
     .cursor-glow {
       position: fixed;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, var(--cursor-glow) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
       transform: translate(-50%, -50%);
-      transition: opacity 0.3s;
+      transition: background 0.5s ease;
     }
 
     /* Verified badge */
     .verified {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      background: linear-gradient(135deg, #34d399, #22d3ee);
+      align-items: center; justify-content: center;
+      width: 18px; height: 18px;
+      background: linear-gradient(135deg, #6366f1, #22d3ee);
       border-radius: 50%;
       margin-left: 6px;
       vertical-align: middle;
+      box-shadow: 0 2px 6px rgba(99,102,241,0.25);
     }
 
-    /* Stats row */
+    /* Stats */
     .stat-item {
       text-align: center;
-      padding: 0 16px;
+      padding: 0 18px;
       position: relative;
     }
     .stat-item:not(:last-child)::after {
       content: '';
       position: absolute;
-      right: 0;
-      top: 50%;
+      right: 0; top: 50%;
       transform: translateY(-50%);
-      width: 1px;
-      height: 20px;
-      background: rgba(255,255,255,0.08);
+      width: 1px; height: 18px;
+      background: var(--stat-divider);
+      transition: background 0.5s ease;
     }
 
-    /* Smooth scroll */
-    html { scroll-behavior: smooth; }
-
-    /* Selection color */
-    ::selection {
-      background: rgba(52, 211, 153, 0.3);
-      color: #fff;
-    }
-
-    /* Share button pulse */
-    .share-btn {
+    /* Share & Toggle buttons */
+    .top-btn {
       position: relative;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .share-btn::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
+    .top-btn:hover { transform: scale(1.1); }
+    .top-btn:active { transform: scale(0.95); }
+
+    /* Theme toggle specific */
+    .theme-toggle {
+      width: 40px; height: 40px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.1);
-      animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--toggle-bg);
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      color: var(--toggle-icon);
+      transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
     }
-    @keyframes pulse-ring {
-      0% { transform: scale(1); opacity: 0.5; }
-      100% { transform: scale(1.5); opacity: 0; }
+    .theme-toggle:hover { transform: scale(1.1) rotate(12deg); }
+    .theme-toggle:active { transform: scale(0.92); }
+    .theme-toggle svg {
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
     }
 
-    /* External link arrow animation */
+    /* Arrow icon */
     .arrow-icon {
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.5s ease;
+      color: var(--text-muted);
     }
     .link-btn:hover .arrow-icon {
       transform: translate(3px, -3px);
+      color: var(--text-secondary);
     }
 
-    /* Responsive tweaks */
+    /* Selection */
+    ::selection {
+      background: var(--selection-bg);
+      color: var(--selection-text);
+    }
+
+    html { scroll-behavior: smooth; }
+
     @media (max-width: 480px) {
       .link-btn { padding: 16px 18px; }
-      .avatar-wrap { width: 90px; height: 90px; }
+      .avatar-wrap { width: 96px; height: 96px; }
     }
   </style>
   <base target="_blank">
+<base target="_blank">
 </head>
 <body class="flex flex-col items-center px-5 py-12 relative">
 
-  <!-- Background elements -->
-  <div class="noise"></div>
+  <!-- Background -->
+  <div class="dots"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
-
-  <!-- Floating particles container -->
   <div id="particles"></div>
 
-  <!-- Share button -->
-  <div class="w-full max-w-md flex justify-end mb-8 stagger">
-    <button onclick="copyLink()" class="share-btn p-3 rounded-full glass hover:bg-white/10 transition-all duration-300 hover:scale-110 active:scale-95" aria-label="Copy link">
-      <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <!-- Top controls -->
+  <div class="w-full max-w-md flex justify-between items-center mb-8 stagger">
+    <!-- Theme toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+      <!-- Sun -->
+      <svg id="sunIcon" class="w-4 h-4 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <!-- Moon -->
+      <svg id="moonIcon" class="w-4 h-4 absolute opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+    </button>
+
+    <!-- Share -->
+    <button onclick="copyLink()" class="top-btn p-3 rounded-full glass" aria-label="Copy link">
+      <svg class="w-4 h-4" style="color: var(--text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
       </svg>
     </button>
@@ -376,126 +437,121 @@
         <img src="https://i.imgur.com/TSyYWpZ.jpeg" alt="First News Profile">
       </div>
     </div>
-    
+
     <div class="flex items-center justify-center gap-1 mb-2 stagger">
-      <h1 class="text-3xl font-bold tracking-tight bg-gradient-to-r from-white via-white to-neutral-400 bg-clip-text text-transparent">First News</h1>
+      <h1 class="text-3xl font-bold tracking-tight" style="color: var(--text-primary);">First News</h1>
       <span class="verified">
         <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
           <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
         </svg>
       </span>
     </div>
-    
-    <p class="text-neutral-400 text-sm mb-4 max-w-xs mx-auto leading-relaxed stagger">Breaking news from all over the world. Stay informed, stay ahead.</p>
-    
-    <div class="inline-flex items-center gap-2 text-xs text-neutral-400 glass px-4 py-2 rounded-full stagger">
+
+    <p class="text-sm mb-4 max-w-xs mx-auto leading-relaxed" style="color: var(--text-secondary);">Breaking news from all over the world. Stay informed, stay ahead.</p>
+
+    <div class="inline-flex items-center gap-2 text-xs glass px-4 py-2 rounded-full stagger" style="color: var(--text-secondary);">
       <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
       </span>
       <span class="font-medium">Online now</span>
     </div>
 
-    <!-- Quick stats -->
+    <!-- Stats -->
     <div class="flex items-center justify-center mt-6 stagger">
       <div class="glass rounded-2xl px-6 py-3 flex items-center">
         <div class="stat-item">
-          <div class="text-sm font-bold text-white">5</div>
-          <div class="text-[10px] text-neutral-500 uppercase tracking-wider mt-0.5">Platforms</div>
+          <div class="text-sm font-bold" style="color: var(--text-primary);">5</div>
+          <div class="text-[10px] uppercase tracking-wider mt-0.5" style="color: var(--text-muted);">Platforms</div>
         </div>
         <div class="stat-item">
-          <div class="text-sm font-bold text-white">24/7</div>
-          <div class="text-[10px] text-neutral-500 uppercase tracking-wider mt-0.5">Updates</div>
+          <div class="text-sm font-bold" style="color: var(--text-primary);">24/7</div>
+          <div class="text-[10px] uppercase tracking-wider mt-0.5" style="color: var(--text-muted);">Updates</div>
         </div>
         <div class="stat-item">
-          <div class="text-sm font-bold text-white">Global</div>
-          <div class="text-[10px] text-neutral-500 uppercase tracking-wider mt-0.5">Coverage</div>
+          <div class="text-sm font-bold" style="color: var(--text-primary);">Global</div>
+          <div class="text-[10px] uppercase tracking-wider mt-0.5" style="color: var(--text-muted);">Coverage</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Links -->
-  <div class="w-full max-w-md space-y-3.5">
+  <div class="w-full max-w-md space-y-3">
 
-    <!-- TikTok -->
     <a href="https://tiktok.com/@absiniyaetbiopoa1" target="_blank" rel="noopener" class="link-btn link-tiktok stagger">
-      <div class="icon-box bg-[#ff0050]/10">
-        <svg class="w-5 h-5 text-[#ff0050]" fill="currentColor" viewBox="0 0 24 24">
+      <div class="icon-box bg-rose-50">
+        <svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm">TikTok</div>
-        <div class="text-xs text-neutral-500 truncate">@absiniyaetbiopoa1</div>
+        <div class="font-semibold text-sm" style="color: var(--text-primary);">TikTok</div>
+        <div class="text-xs truncate" style="color: var(--text-muted);">@absiniyaetbiopoa1</div>
       </div>
-      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
 
-    <!-- YouTube -->
     <a href="https://youtube.com/@AbrshNews" target="_blank" rel="noopener" class="link-btn link-youtube stagger">
-      <div class="icon-box bg-red-500/10">
+      <div class="icon-box bg-red-50">
         <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm">YouTube</div>
-        <div class="text-xs text-neutral-500 truncate">@AbrshNews</div>
+        <div class="font-semibold text-sm" style="color: var(--text-primary);">YouTube</div>
+        <div class="text-xs truncate" style="color: var(--text-muted);">@AbrshNews</div>
       </div>
-      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
 
-    <!-- Instagram -->
     <a href="https://instagram.com/abrshnews" target="_blank" rel="noopener" class="link-btn link-insta stagger">
-      <div class="icon-box bg-[#E1306C]/10">
-        <svg class="w-5 h-5 text-[#E1306C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="icon-box bg-pink-50">
+        <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect>
           <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"></path>
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"></line>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm">Instagram</div>
-        <div class="text-xs text-neutral-500 truncate">@abrshnews</div>
+        <div class="font-semibold text-sm" style="color: var(--text-primary);">Instagram</div>
+        <div class="text-xs truncate" style="color: var(--text-muted);">@abrshnews</div>
       </div>
-      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
 
-    <!-- Telegram -->
     <a href="https://t.me/FirstNews1221" target="_blank" rel="noopener" class="link-btn link-telegram stagger">
-      <div class="icon-box bg-sky-500/10">
-        <svg class="w-5 h-5 text-sky-400" fill="currentColor" viewBox="0 0 24 24">
+      <div class="icon-box bg-sky-50">
+        <svg class="w-5 h-5 text-sky-500" fill="currentColor" viewBox="0 0 24 24">
           <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm">Telegram</div>
-        <div class="text-xs text-neutral-500 truncate">@FirstNews1221</div>
+        <div class="font-semibold text-sm" style="color: var(--text-primary);">Telegram</div>
+        <div class="text-xs truncate" style="color: var(--text-muted);">@FirstNews1221</div>
       </div>
-      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
 
-    <!-- Facebook -->
     <a href="https://facebook.com/AbrshNews12" target="_blank" rel="noopener" class="link-btn link-facebook stagger">
-      <div class="icon-box bg-blue-600/10">
-        <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+      <div class="icon-box bg-blue-50">
+        <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="font-semibold text-sm">Facebook</div>
-        <div class="text-xs text-neutral-500 truncate">@AbrshNews12</div>
+        <div class="font-semibold text-sm" style="color: var(--text-primary);">Facebook</div>
+        <div class="text-xs truncate" style="color: var(--text-muted);">@AbrshNews12</div>
       </div>
-      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="arrow-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
       </svg>
     </a>
@@ -504,13 +560,13 @@
 
   <!-- Footer -->
   <div class="mt-12 text-center stagger">
-    <p class="text-[11px] text-neutral-700 tracking-[0.2em] uppercase font-medium">First News &copy; 2026</p>
+    <p class="text-[11px] tracking-[0.2em] uppercase font-medium" style="color: var(--text-footer);">First News &copy; 2026</p>
   </div>
 
   <!-- Toast -->
-  <div id="toast" class="glass px-6 py-3.5 rounded-full flex items-center gap-3 text-sm text-white shadow-2xl shadow-black/50">
-    <div class="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center">
-      <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div id="toast" class="px-6 py-3.5 rounded-full flex items-center gap-3 text-sm">
+    <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
+      <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
       </svg>
     </div>
@@ -518,7 +574,44 @@
   </div>
 
   <script>
-    // Copy link function
+    // ========== THEME TOGGLE ==========
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const html = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+        sunIcon.style.opacity = '0';
+        sunIcon.style.transform = 'rotate(90deg) scale(0.5)';
+        moonIcon.style.opacity = '1';
+        moonIcon.style.transform = 'rotate(0deg) scale(1)';
+      } else {
+        html.removeAttribute('data-theme');
+        sunIcon.style.opacity = '1';
+        sunIcon.style.transform = 'rotate(0deg) scale(1)';
+        moonIcon.style.opacity = '0';
+        moonIcon.style.transform = 'rotate(-90deg) scale(0.5)';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    // Init theme
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === 'dark' || (!saved && prefersDark)) {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = html.hasAttribute('data-theme');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+
+    // ========== COPY LINK ==========
     function copyLink() {
       navigator.clipboard.writeText(window.location.href).then(() => {
         const t = document.getElementById('toast'); 
@@ -537,7 +630,7 @@
       });
     }
 
-    // Mouse-following spotlight on link cards
+    // ========== MOUSE SPOTLIGHT ==========
     document.querySelectorAll('.link-btn').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -548,44 +641,43 @@
       });
     });
 
-    // Cursor glow effect
+    // ========== CURSOR GLOW ==========
     const cursorGlow = document.getElementById('cursorGlow');
     let mouseX = 0, mouseY = 0;
     let glowX = 0, glowY = 0;
-    
+
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
     });
 
     function animateGlow() {
-      glowX += (mouseX - glowX) * 0.1;
-      glowY += (mouseY - glowY) * 0.1;
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
       cursorGlow.style.left = glowX + 'px';
       cursorGlow.style.top = glowY + 'px';
       requestAnimationFrame(animateGlow);
     }
     animateGlow();
 
-    // Floating particles
+    // ========== FLOATING PARTICLES ==========
     function createParticle() {
       const particle = document.createElement('div');
       particle.className = 'particle';
       particle.style.left = Math.random() * 100 + 'vw';
       particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
-      particle.style.opacity = Math.random() * 0.3 + 0.1;
+      particle.style.opacity = Math.random() * 0.4 + 0.1;
       const size = Math.random() * 3 + 1;
       particle.style.width = size + 'px';
       particle.style.height = size + 'px';
       document.getElementById('particles').appendChild(particle);
-      
       setTimeout(() => particle.remove(), 25000);
     }
 
     setInterval(createParticle, 800);
     for (let i = 0; i < 15; i++) setTimeout(createParticle, i * 300);
 
-    // 3D tilt effect on link buttons
+    // ========== 3D TILT ==========
     document.querySelectorAll('.link-btn').forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
@@ -593,11 +685,11 @@
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 15;
-        const rotateY = (centerX - x) / 15;
-        btn.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px) scale(1.02)`;
+        const rotateX = (y - centerY) / 18;
+        const rotateY = (centerX - x) / 18;
+        btn.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px) scale(1.015)`;
       });
-      
+
       btn.addEventListener('mouseleave', () => {
         btn.style.transform = '';
       });
