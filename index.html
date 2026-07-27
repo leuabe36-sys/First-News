@@ -313,20 +313,34 @@
       position: sticky;
       top: 0;
       z-index: 30;
-      transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+      will-change: transform, padding, background;
+      transition: padding 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  backdrop-filter 0.6s ease;
     }
     .profile-hero.is-locked {
-      padding: 12px 0 12px;
+      padding: 10px 0 10px;
       background: var(--sticky-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px) saturate(1.2);
+      -webkit-backdrop-filter: blur(24px) saturate(1.2);
       border-bottom: 1px solid var(--glass-border);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    }
+    .profile-hero .avatar-wrap {
+      transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  margin 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .profile-hero.is-locked .avatar-wrap {
-      width: 52px;
-      height: 52px;
-      margin-bottom: 8px;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 6px;
+    }
+    .profile-hero .avatar-wrap::before,
+    .profile-hero .avatar-wrap::after {
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .profile-hero.is-locked .avatar-wrap::before,
     .profile-hero.is-locked .avatar-wrap::after {
@@ -335,13 +349,30 @@
     }
     .profile-hero.is-locked .avatar-wrap::after {
       filter: blur(4px);
-      opacity: 0.15;
+      opacity: 0.12;
+    }
+    .profile-hero .avatar {
+      transition: border-width 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.5s ease;
     }
     .profile-hero.is-locked .avatar {
       border-width: 2px;
     }
+    .profile-hero h1 {
+      transition: font-size 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  letter-spacing 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
     .profile-hero.is-locked h1 {
-      font-size: 18px;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+    }
+    .profile-hero .verified {
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  width 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .profile-hero.is-locked .verified {
+      transform: scale(0.85);
     }
 
     #toast { 
@@ -566,7 +597,7 @@
   </div>
 
   <!-- Bio & Stats (scrolls away) -->
-  <div class="w-full max-w-md text-center pb-6">
+  <div class="w-full max-w-md text-center pb-6" style="transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);">
     <p class="text-sm mb-5 max-w-[280px] mx-auto leading-relaxed" style="color: var(--text-secondary);">Breaking news from all over the world. Stay informed, stay ahead.</p>
 
     <div class="online-badge inline-flex items-center gap-2 text-xs glass px-4 py-2 rounded-full" style="color: var(--text-secondary);">
@@ -594,7 +625,7 @@
       </div>
     </div>
 
-    <div class="scroll-hint" id="scrollHint">
+    <div class="scroll-hint" id="scrollHint" style="transition: opacity 0.4s ease, transform 0.4s ease;">
       <svg class="w-5 h-5" style="color: var(--text-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
       </svg>
@@ -833,25 +864,43 @@
 
     document.querySelectorAll('.link-btn').forEach(btn => observer.observe(btn));
 
-    // Scroll lock for profile hero
+    // Scroll lock for profile hero — smooth RAF-based toggle
     const heroProfile = document.querySelector('.profile-hero');
     const scrollHint = document.getElementById('scrollHint');
+    let isLocked = false;
+    let scrollTicking = false;
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        heroProfile.classList.add('is-locked');
-      } else {
-        heroProfile.classList.remove('is-locked');
+    function updateScrollLock() {
+      const y = window.scrollY;
+      const shouldLock = y > 10;
+
+      if (shouldLock !== isLocked) {
+        isLocked = shouldLock;
+        if (isLocked) {
+          heroProfile.classList.add('is-locked');
+        } else {
+          heroProfile.classList.remove('is-locked');
+        }
       }
 
-      // Hide scroll hint after scrolling
-      if (window.scrollY > 50) {
+      // Smooth scroll hint fade
+      if (y > 50) {
         scrollHint.style.opacity = '0';
-        scrollHint.style.transition = 'opacity 0.3s ease';
+        scrollHint.style.transform = 'translateY(4px)';
       } else {
         scrollHint.style.opacity = '0.5';
+        scrollHint.style.transform = 'translateY(0)';
       }
-    });
+
+      scrollTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(updateScrollLock);
+        scrollTicking = true;
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>
