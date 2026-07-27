@@ -6,140 +6,602 @@
   <title>First News</title>
   <meta name="description" content="All my social links in one place.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     * { font-family: 'Inter', system-ui, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #050505; color: #fff; min-height: 100vh; overflow-x: hidden; }
-    .orb { position: fixed; border-radius: 50%; filter: blur(100px); opacity: 0.4; z-index: -1; animation: drift 20s ease-in-out infinite alternate; }
-    .orb-1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(52,211,153,0.4), transparent 70%); top: -10%; left: -10%; }
-    .orb-2 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(168,85,247,0.35), transparent 70%); bottom: -5%; right: -10%; animation-delay: -5s; }
-    .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(34,211,238,0.25), transparent 70%); top: 40%; left: 50%; animation-delay: -10s; }
-    @keyframes drift { 0% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -30px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.95); } 100% { transform: translate(10px, -10px) scale(1.05); } }
-    .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.06); }
-    .link-btn { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); color: #fff; text-decoration: none; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; }
-    .link-btn:hover { transform: translateY(-2px) scale(1.01); border-color: rgba(255, 255, 255, 0.15); }
-    .link-tiktok:hover { box-shadow: 0 10px 40px -10px rgba(255, 0, 80, 0.2); border-color: rgba(255, 0, 80, 0.3); }
-    .link-youtube:hover { box-shadow: 0 10px 40px -10px rgba(255, 0, 0, 0.2); border-color: rgba(255, 0, 0, 0.3); }
-    .link-insta:hover { box-shadow: 0 10px 40px -10px rgba(225, 48, 108, 0.2); border-color: rgba(225, 48, 108, 0.3); }
-    .link-telegram:hover { box-shadow: 0 10px 40px -10px rgba(0, 136, 204, 0.2); border-color: rgba(0, 136, 204, 0.3); }
-    .link-facebook:hover { box-shadow: 0 10px 40px -10px rgba(24, 119, 242, 0.2); border-color: rgba(24, 119, 242, 0.3); }
-    .avatar-wrap { position: relative; width: 96px; height: 96px; margin: 0 auto 16px; }
-    .avatar-wrap::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: conic-gradient(from 0deg, #34d399, #22d3ee, #a78bfa, #34d399); animation: spin 4s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .avatar { position: relative; width: 100%; height: 100%; border-radius: 50%; background: #0a0a0a; display: flex; align-items: center; justify-content: center; border: 3px solid #0a0a0a; overflow: hidden; }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .stagger { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .stagger:nth-child(1) { animation-delay: 0.05s; } .stagger:nth-child(2) { animation-delay: 0.1s; } .stagger:nth-child(3) { animation-delay: 0.15s; } .stagger:nth-child(4) { animation-delay: 0.2s; } .stagger:nth-child(5) { animation-delay: 0.25s; } .stagger:nth-child(6) { animation-delay: 0.3s; } .stagger:nth-child(7) { animation-delay: 0.35s; } .stagger:nth-child(8) { animation-delay: 0.4s; } .stagger:nth-child(9) { animation-delay: 0.45s; }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; }
-    #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-    .icon-box { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    
+    body { 
+      background: #030303; 
+      color: #fff; 
+      min-height: 100vh; 
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* Ambient background orbs */
+    .orb { 
+      position: fixed; 
+      border-radius: 50%; 
+      filter: blur(120px); 
+      opacity: 0.35; 
+      z-index: -1; 
+      animation: drift 25s ease-in-out infinite alternate; 
+      pointer-events: none;
+    }
+    .orb-1 { 
+      width: 500px; 
+      height: 500px; 
+      background: radial-gradient(circle, rgba(52,211,153,0.5), transparent 70%); 
+      top: -15%; 
+      left: -10%; 
+    }
+    .orb-2 { 
+      width: 450px; 
+      height: 450px; 
+      background: radial-gradient(circle, rgba(168,85,247,0.4), transparent 70%); 
+      bottom: -10%; 
+      right: -15%; 
+      animation-delay: -8s; 
+    }
+    .orb-3 { 
+      width: 350px; 
+      height: 350px; 
+      background: radial-gradient(circle, rgba(34,211,238,0.3), transparent 70%); 
+      top: 45%; 
+      left: 55%; 
+      animation-delay: -16s; 
+    }
+
+    @keyframes drift { 
+      0% { transform: translate(0, 0) scale(1); } 
+      33% { transform: translate(40px, -40px) scale(1.15); } 
+      66% { transform: translate(-30px, 30px) scale(0.9); } 
+      100% { transform: translate(15px, -20px) scale(1.08); } 
+    }
+
+    /* Noise texture overlay */
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.025;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Glass card base */
+    .glass { 
+      background: rgba(255, 255, 255, 0.025); 
+      backdrop-filter: blur(24px); 
+      -webkit-backdrop-filter: blur(24px); 
+      border: 1px solid rgba(255, 255, 255, 0.06); 
+    }
+
+    /* Link buttons with spotlight effect */
+    .link-btn { 
+      display: flex; 
+      align-items: center; 
+      gap: 16px; 
+      padding: 18px 22px; 
+      border-radius: 18px; 
+      background: rgba(255, 255, 255, 0.02); 
+      border: 1px solid rgba(255, 255, 255, 0.05); 
+      color: #fff; 
+      text-decoration: none; 
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+      position: relative; 
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .link-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.06),
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .link-btn:hover::before {
+      opacity: 1;
+    }
+
+    .link-btn:hover { 
+      transform: translateY(-3px) scale(1.02); 
+      border-color: rgba(255, 255, 255, 0.12); 
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    .link-tiktok:hover { 
+      box-shadow: 0 20px 50px -15px rgba(255, 0, 80, 0.25); 
+      border-color: rgba(255, 0, 80, 0.25); 
+    }
+    .link-youtube:hover { 
+      box-shadow: 0 20px 50px -15px rgba(255, 0, 0, 0.25); 
+      border-color: rgba(255, 0, 0, 0.25); 
+    }
+    .link-insta:hover { 
+      box-shadow: 0 20px 50px -15px rgba(225, 48, 108, 0.25); 
+      border-color: rgba(225, 48, 108, 0.25); 
+    }
+    .link-telegram:hover { 
+      box-shadow: 0 20px 50px -15px rgba(0, 136, 204, 0.25); 
+      border-color: rgba(0, 136, 204, 0.25); 
+    }
+    .link-facebook:hover { 
+      box-shadow: 0 20px 50px -15px rgba(24, 119, 242, 0.25); 
+      border-color: rgba(24, 119, 242, 0.25); 
+    }
+
+    /* Avatar with animated gradient ring */
+    .avatar-wrap { 
+      position: relative; 
+      width: 104px; 
+      height: 104px; 
+      margin: 0 auto 20px; 
+    }
+    .avatar-wrap::before { 
+      content: ''; 
+      position: absolute; 
+      inset: -4px; 
+      border-radius: 50%; 
+      background: conic-gradient(from 0deg, #34d399, #22d3ee, #a78bfa, #f472b6, #34d399); 
+      animation: spin 6s linear infinite; 
+      filter: blur(2px);
+      opacity: 0.8;
+    }
+    .avatar-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #34d399, #22d3ee, #a78bfa, #f472b6, #34d399);
+      animation: spin 6s linear infinite;
+      opacity: 0.3;
+      filter: blur(8px);
+    }
+    
+    @keyframes spin { 
+      to { transform: rotate(360deg); } 
+    }
+
+    .avatar { 
+      position: relative; 
+      width: 100%; 
+      height: 100%; 
+      border-radius: 50%; 
+      background: #0a0a0a; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      border: 3px solid #0a0a0a; 
+      overflow: hidden; 
+      z-index: 1;
+    }
+    .avatar img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .avatar:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Stagger animations */
+    .stagger { 
+      opacity: 0; 
+      transform: translateY(30px); 
+      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+    }
+    .stagger:nth-child(1) { animation-delay: 0.1s; } 
+    .stagger:nth-child(2) { animation-delay: 0.18s; } 
+    .stagger:nth-child(3) { animation-delay: 0.26s; } 
+    .stagger:nth-child(4) { animation-delay: 0.34s; } 
+    .stagger:nth-child(5) { animation-delay: 0.42s; } 
+    .stagger:nth-child(6) { animation-delay: 0.5s; } 
+    .stagger:nth-child(7) { animation-delay: 0.58s; } 
+    .stagger:nth-child(8) { animation-delay: 0.66s; } 
+    .stagger:nth-child(9) { animation-delay: 0.74s; }
+
+    @keyframes fadeUp { 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+
+    /* Toast notification */
+    #toast { 
+      position: fixed; 
+      bottom: 28px; 
+      left: 50%; 
+      transform: translateX(-50%) translateY(100px); 
+      opacity: 0; 
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+      z-index: 100; 
+    }
+    #toast.show { 
+      transform: translateX(-50%) translateY(0); 
+      opacity: 1; 
+    }
+
+    /* Icon boxes */
+    .icon-box { 
+      width: 46px; 
+      height: 46px; 
+      border-radius: 14px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .link-btn:hover .icon-box {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    /* Floating particles */
+    .particle {
+      position: fixed;
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      animation: float-up linear infinite;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    /* Cursor glow */
+    .cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+    }
+
+    /* Verified badge */
+    .verified {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, #34d399, #22d3ee);
+      border-radius: 50%;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* Stats row */
+    .stat-item {
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+    }
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 20px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Selection color */
+    ::selection {
+      background: rgba(52, 211, 153, 0.3);
+      color: #fff;
+    }
+
+    /* Share button pulse */
+    .share-btn {
+      position: relative;
+    }
+    .share-btn::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* External link arrow animation */
+    .arrow-icon {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .link-btn:hover .arrow-icon {
+      transform: translate(3px, -3px);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      .link-btn { padding: 16px 18px; }
+      .avatar-wrap { width: 90px; height: 90px; }
+    }
   </style>
-<base target="_blank">
+  <base target="_blank">
 </head>
-<body class="flex flex-col items-center px-5 py-10 relative">
-  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+<body class="flex flex-col items-center px-5 py-12 relative">
+
+  <!-- Background elements -->
+  <div class="noise"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Floating particles container -->
+  <div id="particles"></div>
 
   <!-- Share button -->
-  <div class="w-full max-w-md flex justify-end mb-6 stagger">
-    <button onclick="copyLink()" class="p-2.5 rounded-full glass hover:bg-white/10 transition-colors" aria-label="Copy link">
-      <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+  <div class="w-full max-w-md flex justify-end mb-8 stagger">
+    <button onclick="copyLink()" class="share-btn p-3 rounded-full glass hover:bg-white/10 transition-all duration-300 hover:scale-110 active:scale-95" aria-label="Copy link">
+      <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+      </svg>
     </button>
   </div>
 
   <!-- Profile -->
-  <div class="text-center mb-8 w-full max-w-md">
+  <div class="text-center mb-10 w-full max-w-md">
     <div class="avatar-wrap stagger">
       <div class="avatar">
- 
-        <img src="https://i.imgur.com/TSyYWpZ.jpeg" alt="Profile">
-
-        
+        <img src="https://i.imgur.com/TSyYWpZ.jpeg" alt="First News Profile">
       </div>
     </div>
-    <!-- STEP 2: CHANGE YOUR NAME -->
-    <h1 class="text-2xl font-bold tracking-tight mb-1 stagger">First News</h1>
-    <!-- STEP 3: CHANGE YOUR BIO -->
-    <p class="text-neutral-400 text-sm mb-3 stagger">Breaking news from all over the world.</p>
-    <div class="inline-flex items-center gap-2 text-xs text-neutral-500 glass px-3 py-1.5 rounded-full stagger">
-      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span><span>Online</span>
+    
+    <div class="flex items-center justify-center gap-1 mb-2 stagger">
+      <h1 class="text-3xl font-bold tracking-tight bg-gradient-to-r from-white via-white to-neutral-400 bg-clip-text text-transparent">First News</h1>
+      <span class="verified">
+        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </span>
+    </div>
+    
+    <p class="text-neutral-400 text-sm mb-4 max-w-xs mx-auto leading-relaxed stagger">Breaking news from all over the world. Stay informed, stay ahead.</p>
+    
+    <div class="inline-flex items-center gap-2 text-xs text-neutral-400 glass px-4 py-2 rounded-full stagger">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+      </span>
+      <span class="font-medium">Online now</span>
+    </div>
+
+    <!-- Quick stats -->
+    <div class="flex items-center justify-center mt-6 stagger">
+      <div class="glass rounded-2xl px-6 py-3 flex items-center">
+        <div class="stat-item">
+          <div class="text-sm font-bold text-white">5</div>
+          <div class="text-[10px] text-neutral-500 uppercase tracking-wider mt-0.5">Platforms</div>
+        </div>
+        <div class="stat-item">
+          <div class="text-sm font-bold text-white">24/7</div>
+          <div class="text-[10px] text-neutral-500 uppercase tracking-wider mt-0.5">Updates</div>
+        </div>
+        <div class="stat-item">
+          <div class="text-sm font-bold text-white">Global</div>
+          <div class="text-[10px] text-neutral-500 uppercase tracking-wider mt-0.5">Coverage</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Links -->
-  <div class="w-full max-w-md space-y-3">
-
-    <!-- STEP 4: CHANGE SOCIAL MEDIA LINKS BELOW -->
+  <div class="w-full max-w-md space-y-3.5">
 
     <!-- TikTok -->
     <a href="https://tiktok.com/@absiniyaetbiopoa1" target="_blank" rel="noopener" class="link-btn link-tiktok stagger">
       <div class="icon-box bg-[#ff0050]/10">
-        <svg class="w-5 h-5 text-[#ff0050]" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        <svg class="w-5 h-5 text-[#ff0050]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+        </svg>
       </div>
-      <div class="flex-1 min-w-0"><div class="font-semibold text-sm">TikTok</div><div class="text-xs text-neutral-500 truncate">@absiniyaetbiopoa1</div></div>
-      <svg class="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-sm">TikTok</div>
+        <div class="text-xs text-neutral-500 truncate">@absiniyaetbiopoa1</div>
+      </div>
+      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
     </a>
 
     <!-- YouTube -->
     <a href="https://youtube.com/@AbrshNews" target="_blank" rel="noopener" class="link-btn link-youtube stagger">
       <div class="icon-box bg-red-500/10">
-        <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
       </div>
-      <div class="flex-1 min-w-0"><div class="font-semibold text-sm">YouTube</div><div class="text-xs text-neutral-500 truncate">@AbrshNews</div></div>
-      <svg class="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-sm">YouTube</div>
+        <div class="text-xs text-neutral-500 truncate">@AbrshNews</div>
+      </div>
+      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
     </a>
 
     <!-- Instagram -->
     <a href="https://instagram.com/abrshnews" target="_blank" rel="noopener" class="link-btn link-insta stagger">
       <div class="icon-box bg-[#E1306C]/10">
-        <svg class="w-5 h-5 text-[#E1306C]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"></line></svg>
+        <svg class="w-5 h-5 text-[#E1306C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2" stroke-linecap="round"></line>
+        </svg>
       </div>
-      <div class="flex-1 min-w-0"><div class="font-semibold text-sm">Instagram</div><div class="text-xs text-neutral-500 truncate">@abrshnews</div></div>
-      <svg class="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-sm">Instagram</div>
+        <div class="text-xs text-neutral-500 truncate">@abrshnews</div>
+      </div>
+      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
     </a>
 
     <!-- Telegram -->
     <a href="https://t.me/FirstNews1221" target="_blank" rel="noopener" class="link-btn link-telegram stagger">
       <div class="icon-box bg-sky-500/10">
-        <svg class="w-5 h-5 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        <svg class="w-5 h-5 text-sky-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+        </svg>
       </div>
-      <div class="flex-1 min-w-0"><div class="font-semibold text-sm">Telegram</div><div class="text-xs text-neutral-500 truncate">@FirstNews1221</div></div>
-      <svg class="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-sm">Telegram</div>
+        <div class="text-xs text-neutral-500 truncate">@FirstNews1221</div>
+      </div>
+      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
     </a>
 
     <!-- Facebook -->
     <a href="https://facebook.com/AbrshNews12" target="_blank" rel="noopener" class="link-btn link-facebook stagger">
       <div class="icon-box bg-blue-600/10">
-        <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
       </div>
-      <div class="flex-1 min-w-0"><div class="font-semibold text-sm">Facebook</div><div class="text-xs text-neutral-500 truncate">@AbrshNews12</div></div>
-      <svg class="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a２ ２h１０a２ ２ ０ ００２－２v－４M１４４h６m０８v６m０－６L１０１４"/></svg>
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-sm">Facebook</div>
+        <div class="text-xs text-neutral-500 truncate">@AbrshNews12</div>
+      </div>
+      <svg class="arrow-icon w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
     </a>
 
   </div>
 
-  <div class="mt-10 text-center stagger">
-    <p class="text-[10px] text-neutral-700 tracking-widest uppercase">First News &copy; 2026</p>
+  <!-- Footer -->
+  <div class="mt-12 text-center stagger">
+    <p class="text-[11px] text-neutral-700 tracking-[0.2em] uppercase font-medium">First News &copy; 2026</p>
   </div>
 
   <!-- Toast -->
-  <div id="toast" class="glass px-5 py-3 rounded-full flex items-center gap-2 text-sm text-white">
-    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span>Link copied to clipboard</span>
+  <div id="toast" class="glass px-6 py-3.5 rounded-full flex items-center gap-3 text-sm text-white shadow-2xl shadow-black/50">
+    <div class="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center">
+      <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+      </svg>
+    </div>
+    <span class="font-medium">Link copied to clipboard</span>
   </div>
 
   <script>
+    // Copy link function
     function copyLink() {
       navigator.clipboard.writeText(window.location.href).then(() => {
-        const t = document.getElementById('toast'); t.classList.add('show');
+        const t = document.getElementById('toast'); 
+        t.classList.add('show');
         setTimeout(() => t.classList.remove('show'), 2500);
       }).catch(() => {
-        const ta = document.createElement('textarea'); ta.value = window.location.href;
-        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-        const t = document.getElementById('toast'); t.classList.add('show');
+        const ta = document.createElement('textarea'); 
+        ta.value = window.location.href;
+        document.body.appendChild(ta); 
+        ta.select(); 
+        document.execCommand('copy'); 
+        document.body.removeChild(ta);
+        const t = document.getElementById('toast'); 
+        t.classList.add('show');
         setTimeout(() => t.classList.remove('show'), 2500);
       });
     }
+
+    // Mouse-following spotlight on link cards
+    document.querySelectorAll('.link-btn').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+      });
+    });
+
+    // Cursor glow effect
+    const cursorGlow = document.getElementById('cursorGlow');
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateGlow() {
+      glowX += (mouseX - glowX) * 0.1;
+      glowY += (mouseY - glowY) * 0.1;
+      cursorGlow.style.left = glowX + 'px';
+      cursorGlow.style.top = glowY + 'px';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // Floating particles
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+      particle.style.opacity = Math.random() * 0.3 + 0.1;
+      const size = Math.random() * 3 + 1;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      document.getElementById('particles').appendChild(particle);
+      
+      setTimeout(() => particle.remove(), 25000);
+    }
+
+    setInterval(createParticle, 800);
+    for (let i = 0; i < 15; i++) setTimeout(createParticle, i * 300);
+
+    // 3D tilt effect on link buttons
+    document.querySelectorAll('.link-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 15;
+        const rotateY = (centerX - x) / 15;
+        btn.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px) scale(1.02)`;
+      });
+      
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
   </script>
 </body>
 </html>
